@@ -1,0 +1,63 @@
+Project Requirements: Single-Process Server Architecture
+
+1. General Architecture
+
+Implement a simple local server using WebSocket (WS) communication.
+
+The system should support two-way communication: the client sends commands (e.g., "WQe2e5" for move notation) and receives the current game state from the server.
+
+The architecture involves multiple clients connecting to a single server instance.
+
+2. Home Screen & User Management
+
+Login: Implement user authentication (username + password).
+
+This must be done via a Shell (CLI), not a GUI.
+
+Credentials must be stored in a SQLite database on the server side.
+
+Rating System: Implement a rating system (starting at 1200 ELO). The rating should move up or down based on game outcomes.
+
+3. Matchmaking & Room Logic
+
+'Play' Button:
+
+Finds an opponent with an ELO range of +/- 100.
+
+If no opponent is found, the system waits for 60 seconds.
+
+If no match is found after 60 seconds, display a message box notifying the user.
+
+'Room' Button:
+
+Clicking opens a window with a text box and buttons: [Create / Join / Cancel].
+
+Create: Generates a new room ID, which should be displayed at the top of the screen.
+
+Join: Enters a room based on the ID typed in the text box. The room ID should be displayed at the top of the screen.
+
+Players & Viewers: The first person to create/join is the White player, the second is the Black player, and subsequent users are viewers.
+
+4. Game & Server Logic
+
+Disconnection Handling: If a player disconnects, initiate an automatic resignation after 20 seconds. Display a countdown on the screen.
+
+Bus Implementation (Pub/Sub): Implement a Message Bus for internal communication to handle:
+
+Updating scores.
+
+Updating move logs.
+
+Adding sound effects.
+
+Triggering game start/end animations.
+
+Logging: Maintain activity logs on both the server and client sides for all communication and actions.
+
+הסבר לתרשימים (כדי שתדעי מה לענות אם הוא ישאל):
+
+תרשים ה-WebSocket: מראה את צד השרת במרכז, כאשר לקוחות (Clients) מתחברים אליו באמצעות ערוץ WS דו-כיווני. הלקוחות שולחים פקודות (מהלכי שחמט) ומקבלים עדכונים על מצב הלוח מהשרת.
+
+תרשים ה-Bus: מתאר מערכת פנימית של "מפרסם/מנוי" (Pub/Sub). השרת או רכיבים פנימיים "מפרסמים" אירועים (כמו סוף משחק או עדכון ניקוד), ורכיבים אחרים (כמו מערכת הסאונד או ממשק המשתמש) "רשומים" להודעות האלה ומגיבים אליהן.
+
+ממשק ה-Room: תרשים המדגים חלון קופץ קלאסי עם תיבת טקסט להזנת שם/מזהה חדר ושלושה כפתורי פעולה בסיסיים.

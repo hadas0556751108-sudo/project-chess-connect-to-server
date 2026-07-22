@@ -1,0 +1,15 @@
+2026-07-22 15:32:21.763 Connected to server
+2026-07-22 15:32:21.766 Welcome to Chess Server
+2026-07-22 15:32:21.767 Commands: REGISTER <username> <password> | LOGIN <username> <password> | QUIT
+2026-07-22 15:32:39.993 SEND: REGISTER David pass
+2026-07-22 15:32:40.020 RECV: REGISTER_FAILED username taken or invalid | handlers: 0
+2026-07-22 15:32:40.020 > REGISTER_FAILED username taken or invalid
+2026-07-22 15:32:40.350 SEND: LOGIN David pass
+2026-07-22 15:32:40.359 RECV: LOGIN_SUCCESS David 1212 | handlers: 0
+2026-07-22 15:32:40.359 > LOGIN_SUCCESS David 1212
+2026-07-22 15:33:10.246 SEND: PLAY
+2026-07-22 15:33:13.013 RECV: JOINED_ROOM 1 WHITE | handlers: 1
+2026-07-22 15:33:13.013 DISPATCH to ui.HomeScreen
+2026-07-22 15:33:13.024 RECV: GAME_START 1 David Chaim | handlers: 1
+2026-07-22 15:33:13.024 DISPATCH to ui.HomeScreen
+2026-07-22 15:33:13.032 [HomeScreen] openGameWindow: roomId=1 color=WHITE

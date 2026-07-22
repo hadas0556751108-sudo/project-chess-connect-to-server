@@ -1,0 +1,36 @@
+2026-07-22 15:32:22.761 Connected to server
+2026-07-22 15:32:22.764 Welcome to Chess Server
+2026-07-22 15:32:22.764 Commands: REGISTER <username> <password> | LOGIN <username> <password> | QUIT
+2026-07-22 15:32:48.956 SEND: REGISTER Chaim pass
+2026-07-22 15:32:48.965 RECV: REGISTER_FAILED username taken or invalid | handlers: 0
+2026-07-22 15:32:48.965 > REGISTER_FAILED username taken or invalid
+2026-07-22 15:32:49.518 SEND: LOGIN Chaim pass
+2026-07-22 15:32:49.525 RECV: LOGIN_SUCCESS Chaim 1188 | handlers: 0
+2026-07-22 15:32:49.526 > LOGIN_SUCCESS Chaim 1188
+2026-07-22 15:33:12.744 SEND: PLAY
+2026-07-22 15:33:13.013 RECV: JOINED_ROOM 1 BLACK | handlers: 1
+2026-07-22 15:33:13.013 DISPATCH to ui.HomeScreen
+2026-07-22 15:33:13.024 RECV: GAME_START 1 David Chaim | handlers: 1
+2026-07-22 15:33:13.024 DISPATCH to ui.HomeScreen
+2026-07-22 15:33:13.028 [HomeScreen] openGameWindow: roomId=1 color=BLACK
+2026-07-22 16:15:26.693 RECV: OPPONENT_DISCONNECTED 1 David | handlers: 2
+2026-07-22 16:15:26.693 DISPATCH to ui.HomeScreen
+2026-07-22 16:15:26.693 DISPATCH to engine.GameController
+2026-07-22 16:15:26.697 [GameController] handleMessage: OPPONENT_DISCONNECTED 1 David
+2026-07-22 16:15:26.697 RECV: DISCONNECT_COUNTDOWN 1 20 David | handlers: 2
+2026-07-22 16:15:26.697 DISPATCH to ui.HomeScreen
+2026-07-22 16:15:26.697 DISPATCH to engine.GameController
+2026-07-22 16:15:26.697 [GameController] handleMessage: DISCONNECT_COUNTDOWN 1 20 David
+2026-07-22 16:15:26.713 [GameWindow] showOverlay: Opponent disconnected
+2026-07-22 16:15:26.721 [GameController] handleNetworkMessage: OPPONENT_DISCONNECTED 1 David
+2026-07-22 16:15:26.722 [GameController] message type: OPPONENT_DISCONNECTED parts.length: 3
+2026-07-22 16:15:26.730 [GameWindow] showOverlay: Reconnect in 20s
+2026-07-22 16:15:26.730 [GameController] handleNetworkMessage: DISCONNECT_COUNTDOWN 1 20 David
+2026-07-22 16:15:26.730 [GameController] message type: DISCONNECT_COUNTDOWN parts.length: 4
+2026-07-22 16:15:27.684 RECV: DISCONNECT_COUNTDOWN 1 19 David | handlers: 2
+2026-07-22 16:15:27.684 DISPATCH to ui.HomeScreen
+2026-07-22 16:15:27.684 DISPATCH to engine.GameController
+2026-07-22 16:15:27.684 [GameController] handleMessage: DISCONNECT_COUNTDOWN 1 19 David
+2026-07-22 16:15:27.723 [GameWindow] showOverlay: Reconnect in 19s
+2026-07-22 16:15:27.726 [GameController] handleNetworkMessage: DISCONNECT_COUNTDOWN 1 19 David
+2026-07-22 16:15:27.726 [GameController] message type: DISCONNECT_COUNTDOWN parts.length: 4
