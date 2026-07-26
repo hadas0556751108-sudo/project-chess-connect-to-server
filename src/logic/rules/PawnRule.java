@@ -1,11 +1,9 @@
-
 package logic.rules;
 import model.Piece;
 import model.Position;
 
-public class PawnRule implements MoveRule { // סוגר מסולסל פתיחה ראשון
+public class PawnRule implements MoveRule {
     @Override
-
     public boolean isLegal(Piece[][] grid, Position from, Position to) {
         int rowDiff = to.getRow() - from.getRow();
         int colDiff = to.getCol() - from.getCol();
@@ -15,17 +13,17 @@ public class PawnRule implements MoveRule { // סוגר מסולסל פתיחה 
 
         int forward = (p.getColor() == 'W') ? -1 : 1;
         boolean isFirstMove = !p.hasMoved();
-        
+
         // בדיקה אם החייל במיקום ההתחלתי (לבן בשורה 6, שחור בשורה 1)
-        boolean isStartingPosition = (p.getColor() == 'W' && from.getRow() == 6) || 
+        boolean isStartingPosition = (p.getColor() == 'W' && from.getRow() == 6) ||
                                      (p.getColor() == 'B' && from.getRow() == 1);
 
-        // one square forward
+        // תזוזה צעד אחד קדימה למשבצת ריקה
         if (rowDiff == forward && colDiff == 0 && grid[to.getRow()][to.getCol()] == null) {
             return true;
         }
 
-        // two squares forward on first move: path must be clear
+        // דילוג כפול מהמיקום ההתחלתי: הדרך חייבת להיות פנויה
         if (isFirstMove && isStartingPosition && rowDiff == 2 * forward && colDiff == 0) {
             int midRow = from.getRow() + forward;
             if (grid[midRow][from.getCol()] == null && grid[to.getRow()][to.getCol()] == null) {
@@ -33,7 +31,7 @@ public class PawnRule implements MoveRule { // סוגר מסולסל פתיחה 
             }
         }
 
-        // capture diagonally
+        // אכילה באלכסון - רק אם יש כלי יריב ביעד
         if (rowDiff == forward && Math.abs(colDiff) == 1) {
             Piece target = grid[to.getRow()][to.getCol()];
             if (target != null && target.getColor() != p.getColor()) {
@@ -43,5 +41,4 @@ public class PawnRule implements MoveRule { // סוגר מסולסל פתיחה 
 
         return false;
     }
-
 }

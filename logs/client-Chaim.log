@@ -1,36 +1,806 @@
-2026-07-22 15:32:22.761 Connected to server
-2026-07-22 15:32:22.764 Welcome to Chess Server
-2026-07-22 15:32:22.764 Commands: REGISTER <username> <password> | LOGIN <username> <password> | QUIT
-2026-07-22 15:32:48.956 SEND: REGISTER Chaim pass
-2026-07-22 15:32:48.965 RECV: REGISTER_FAILED username taken or invalid | handlers: 0
-2026-07-22 15:32:48.965 > REGISTER_FAILED username taken or invalid
-2026-07-22 15:32:49.518 SEND: LOGIN Chaim pass
-2026-07-22 15:32:49.525 RECV: LOGIN_SUCCESS Chaim 1188 | handlers: 0
-2026-07-22 15:32:49.526 > LOGIN_SUCCESS Chaim 1188
-2026-07-22 15:33:12.744 SEND: PLAY
-2026-07-22 15:33:13.013 RECV: JOINED_ROOM 1 BLACK | handlers: 1
-2026-07-22 15:33:13.013 DISPATCH to ui.HomeScreen
-2026-07-22 15:33:13.024 RECV: GAME_START 1 David Chaim | handlers: 1
-2026-07-22 15:33:13.024 DISPATCH to ui.HomeScreen
-2026-07-22 15:33:13.028 [HomeScreen] openGameWindow: roomId=1 color=BLACK
-2026-07-22 16:15:26.693 RECV: OPPONENT_DISCONNECTED 1 David | handlers: 2
-2026-07-22 16:15:26.693 DISPATCH to ui.HomeScreen
-2026-07-22 16:15:26.693 DISPATCH to engine.GameController
-2026-07-22 16:15:26.697 [GameController] handleMessage: OPPONENT_DISCONNECTED 1 David
-2026-07-22 16:15:26.697 RECV: DISCONNECT_COUNTDOWN 1 20 David | handlers: 2
-2026-07-22 16:15:26.697 DISPATCH to ui.HomeScreen
-2026-07-22 16:15:26.697 DISPATCH to engine.GameController
-2026-07-22 16:15:26.697 [GameController] handleMessage: DISCONNECT_COUNTDOWN 1 20 David
-2026-07-22 16:15:26.713 [GameWindow] showOverlay: Opponent disconnected
-2026-07-22 16:15:26.721 [GameController] handleNetworkMessage: OPPONENT_DISCONNECTED 1 David
-2026-07-22 16:15:26.722 [GameController] message type: OPPONENT_DISCONNECTED parts.length: 3
-2026-07-22 16:15:26.730 [GameWindow] showOverlay: Reconnect in 20s
-2026-07-22 16:15:26.730 [GameController] handleNetworkMessage: DISCONNECT_COUNTDOWN 1 20 David
-2026-07-22 16:15:26.730 [GameController] message type: DISCONNECT_COUNTDOWN parts.length: 4
-2026-07-22 16:15:27.684 RECV: DISCONNECT_COUNTDOWN 1 19 David | handlers: 2
-2026-07-22 16:15:27.684 DISPATCH to ui.HomeScreen
-2026-07-22 16:15:27.684 DISPATCH to engine.GameController
-2026-07-22 16:15:27.684 [GameController] handleMessage: DISCONNECT_COUNTDOWN 1 19 David
-2026-07-22 16:15:27.723 [GameWindow] showOverlay: Reconnect in 19s
-2026-07-22 16:15:27.726 [GameController] handleNetworkMessage: DISCONNECT_COUNTDOWN 1 19 David
-2026-07-22 16:15:27.726 [GameController] message type: DISCONNECT_COUNTDOWN parts.length: 4
+2026-07-26 12:44:17.554 Connected to server
+2026-07-26 12:44:17.558 Welcome to Chess Server
+2026-07-26 12:44:17.558 Commands: REGISTER <username> <password> | LOGIN <username> <password> | QUIT
+2026-07-26 12:45:24.959 SEND: REGISTER Chaim pass
+2026-07-26 12:45:24.978 RECV: REGISTER_FAILED username taken or invalid | handlers: 0
+2026-07-26 12:45:24.978 > REGISTER_FAILED username taken or invalid
+2026-07-26 12:45:25.404 SEND: LOGIN Chaim pass
+2026-07-26 12:45:25.409 RECV: LOGIN_SUCCESS Chaim 1173 | handlers: 0
+2026-07-26 12:45:25.413 > LOGIN_SUCCESS Chaim 1173
+2026-07-26 12:45:39.494 SEND: PLAY
+2026-07-26 12:45:40.212 RECV: JOINED_ROOM 1 BLACK | handlers: 1
+2026-07-26 12:45:40.213 DISPATCH to ui.HomeScreen
+2026-07-26 12:45:40.226 RECV: GAME_START 1 David Chaim | handlers: 1
+2026-07-26 12:45:40.228 DISPATCH to ui.HomeScreen
+2026-07-26 12:45:40.234 [HomeScreen] openGameWindow: roomId=1 color=BLACK
+2026-07-26 12:46:44.419 Click at: model.Position@2da1f6e
+2026-07-26 12:46:44.419 selected: null, clickedPiece: BP
+2026-07-26 12:46:44.421 Selected piece at: model.Position@2da1f6e
+2026-07-26 12:46:44.750 Click at: model.Position@1c12c2dc
+2026-07-26 12:46:44.751 selected: model.Position@2da1f6e, clickedPiece: BP
+2026-07-26 12:46:44.751 selectedPiece: BP, clickedPiece: BP
+2026-07-26 12:46:44.752 clickedPiece color: B, selectedPiece color: B
+2026-07-26 12:46:44.753 Changed selection to: model.Position@1c12c2dc
+2026-07-26 12:46:46.159 Click at: model.Position@5f211e4c
+2026-07-26 12:46:46.159 selected: model.Position@1c12c2dc, clickedPiece: null
+2026-07-26 12:46:46.160 selectedPiece: BP, clickedPiece: null
+2026-07-26 12:46:46.160 Attempting move from model.Position@1c12c2dc to model.Position@5f211e4c
+2026-07-26 12:46:46.738 Click at: model.Position@4e2945e9
+2026-07-26 12:46:46.739 selected: null, clickedPiece: BP
+2026-07-26 12:46:46.739 Selected piece at: model.Position@4e2945e9
+2026-07-26 12:46:47.414 Click at: model.Position@7dd1a996
+2026-07-26 12:46:47.414 selected: model.Position@4e2945e9, clickedPiece: null
+2026-07-26 12:46:47.415 selectedPiece: BP, clickedPiece: null
+2026-07-26 12:46:47.415 Attempting move from model.Position@4e2945e9 to model.Position@7dd1a996
+2026-07-26 12:46:47.415 [GameController] onMoveRequested: from=model.Position@4e2945e9 to=model.Position@7dd1a996 color=BLACK playerColor=B
+2026-07-26 12:46:47.416 [GameController] sendMove: MOVE 1 0 3 0 false
+2026-07-26 12:46:47.416 SEND: MOVE 1 0 3 0 false
+2026-07-26 12:46:47.419 RECV: MOVE 1 1 0 3 0 false | handlers: 2
+2026-07-26 12:46:47.419 DISPATCH to ui.HomeScreen
+2026-07-26 12:46:47.421 DISPATCH to engine.GameController
+2026-07-26 12:46:47.424 [GameController] handleMessage: MOVE 1 1 0 3 0 false
+2026-07-26 12:46:47.426 RECV: SOUND move | handlers: 2
+2026-07-26 12:46:47.426 DISPATCH to ui.HomeScreen
+2026-07-26 12:46:47.426 DISPATCH to engine.GameController
+2026-07-26 12:46:47.428 [GameController] handleMessage: SOUND move
+2026-07-26 12:46:47.451 [GameController] handleNetworkMessage: MOVE 1 1 0 3 0 false
+2026-07-26 12:46:47.451 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:46:47.451 [GameController] MOVE parsed: (1,0) -> (3,0)
+2026-07-26 12:46:47.460 [GameController] handleNetworkMessage: SOUND move
+2026-07-26 12:46:47.461 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:46:49.316 Click at: model.Position@75244d6a
+2026-07-26 12:46:49.317 selected: null, clickedPiece: BP
+2026-07-26 12:46:49.318 Selected piece at: model.Position@75244d6a
+2026-07-26 12:46:51.294 Click at: model.Position@20bdddbe
+2026-07-26 12:46:51.295 selected: model.Position@75244d6a, clickedPiece: BP
+2026-07-26 12:46:51.295 selectedPiece: BP, clickedPiece: BP
+2026-07-26 12:46:51.296 clickedPiece color: B, selectedPiece color: B
+2026-07-26 12:46:51.296 Changed selection to: model.Position@20bdddbe
+2026-07-26 12:46:52.134 Click at: model.Position@5a8d6ed2
+2026-07-26 12:46:52.135 selected: model.Position@20bdddbe, clickedPiece: BP
+2026-07-26 12:46:52.136 selectedPiece: BP, clickedPiece: BP
+2026-07-26 12:46:52.136 clickedPiece color: B, selectedPiece color: B
+2026-07-26 12:46:52.136 Changed selection to: model.Position@5a8d6ed2
+2026-07-26 12:46:53.435 Click at: model.Position@2d86d8c9
+2026-07-26 12:46:53.436 selected: model.Position@5a8d6ed2, clickedPiece: BP
+2026-07-26 12:46:53.436 selectedPiece: BP, clickedPiece: BP
+2026-07-26 12:46:53.436 clickedPiece color: B, selectedPiece color: B
+2026-07-26 12:46:53.438 Changed selection to: model.Position@2d86d8c9
+2026-07-26 12:46:54.149 Click at: model.Position@64d2957b
+2026-07-26 12:46:54.150 selected: model.Position@2d86d8c9, clickedPiece: BP
+2026-07-26 12:46:54.150 selectedPiece: BP, clickedPiece: BP
+2026-07-26 12:46:54.150 clickedPiece color: B, selectedPiece color: B
+2026-07-26 12:46:54.151 Changed selection to: model.Position@64d2957b
+2026-07-26 12:46:55.312 Click at: model.Position@6ddc32a7
+2026-07-26 12:46:55.314 selected: model.Position@64d2957b, clickedPiece: BP
+2026-07-26 12:46:55.315 selectedPiece: BP, clickedPiece: BP
+2026-07-26 12:46:55.315 clickedPiece color: B, selectedPiece color: B
+2026-07-26 12:46:55.315 Changed selection to: model.Position@6ddc32a7
+2026-07-26 12:46:55.785 Click at: model.Position@36ccf758
+2026-07-26 12:46:55.785 selected: model.Position@6ddc32a7, clickedPiece: BP
+2026-07-26 12:46:55.786 selectedPiece: BP, clickedPiece: BP
+2026-07-26 12:46:55.786 clickedPiece color: B, selectedPiece color: B
+2026-07-26 12:46:55.786 Changed selection to: model.Position@36ccf758
+2026-07-26 12:46:57.552 Click at: model.Position@1e221275
+2026-07-26 12:46:57.553 selected: model.Position@36ccf758, clickedPiece: BP
+2026-07-26 12:46:57.554 selectedPiece: BP, clickedPiece: BP
+2026-07-26 12:46:57.554 clickedPiece color: B, selectedPiece color: B
+2026-07-26 12:46:57.554 Changed selection to: model.Position@1e221275
+2026-07-26 12:46:58.694 Click at: model.Position@1e93ef0a
+2026-07-26 12:46:58.695 selected: model.Position@1e221275, clickedPiece: null
+2026-07-26 12:46:58.695 selectedPiece: BP, clickedPiece: null
+2026-07-26 12:46:58.697 Attempting move from model.Position@1e221275 to model.Position@1e93ef0a
+2026-07-26 12:46:58.697 [GameController] onMoveRequested: from=model.Position@1e221275 to=model.Position@1e93ef0a color=BLACK playerColor=B
+2026-07-26 12:46:58.697 [GameController] sendMove: MOVE 3 0 4 0 false
+2026-07-26 12:46:58.697 SEND: MOVE 3 0 4 0 false
+2026-07-26 12:46:58.699 RECV: MOVE 1 3 0 4 0 false | handlers: 2
+2026-07-26 12:46:58.700 DISPATCH to ui.HomeScreen
+2026-07-26 12:46:58.700 DISPATCH to engine.GameController
+2026-07-26 12:46:58.700 [GameController] handleMessage: MOVE 1 3 0 4 0 false
+2026-07-26 12:46:58.701 RECV: SOUND move | handlers: 2
+2026-07-26 12:46:58.701 DISPATCH to ui.HomeScreen
+2026-07-26 12:46:58.702 DISPATCH to engine.GameController
+2026-07-26 12:46:58.703 [GameController] handleMessage: SOUND move
+2026-07-26 12:46:58.704 [GameController] handleNetworkMessage: MOVE 1 3 0 4 0 false
+2026-07-26 12:46:58.704 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:46:58.705 [GameController] MOVE parsed: (3,0) -> (4,0)
+2026-07-26 12:46:58.728 [GameController] handleNetworkMessage: SOUND move
+2026-07-26 12:46:58.729 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:46:59.956 Click at: model.Position@29bb9763
+2026-07-26 12:46:59.956 selected: null, clickedPiece: BP
+2026-07-26 12:46:59.957 Selected piece at: model.Position@29bb9763
+2026-07-26 12:47:00.690 Click at: model.Position@6e4ea92b
+2026-07-26 12:47:00.691 selected: model.Position@29bb9763, clickedPiece: null
+2026-07-26 12:47:00.691 selectedPiece: BP, clickedPiece: null
+2026-07-26 12:47:00.691 Attempting move from model.Position@29bb9763 to model.Position@6e4ea92b
+2026-07-26 12:47:00.693 [GameController] onMoveRequested: from=model.Position@29bb9763 to=model.Position@6e4ea92b color=BLACK playerColor=B
+2026-07-26 12:47:00.693 [GameController] sendMove: MOVE 4 0 5 0 false
+2026-07-26 12:47:00.693 SEND: MOVE 4 0 5 0 false
+2026-07-26 12:47:00.695 RECV: MOVE 1 4 0 5 0 false | handlers: 2
+2026-07-26 12:47:00.695 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:00.696 DISPATCH to engine.GameController
+2026-07-26 12:47:00.696 [GameController] handleMessage: MOVE 1 4 0 5 0 false
+2026-07-26 12:47:00.696 RECV: SOUND move | handlers: 2
+2026-07-26 12:47:00.696 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:00.698 DISPATCH to engine.GameController
+2026-07-26 12:47:00.698 [GameController] handleMessage: SOUND move
+2026-07-26 12:47:00.699 [GameController] handleNetworkMessage: MOVE 1 4 0 5 0 false
+2026-07-26 12:47:00.700 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:47:00.700 [GameController] MOVE parsed: (4,0) -> (5,0)
+2026-07-26 12:47:00.705 [GameController] handleNetworkMessage: SOUND move
+2026-07-26 12:47:00.705 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:47:02.108 Click at: model.Position@5b725523
+2026-07-26 12:47:02.110 selected: null, clickedPiece: BP
+2026-07-26 12:47:02.110 Selected piece at: model.Position@5b725523
+2026-07-26 12:47:03.179 Click at: model.Position@77f61aee
+2026-07-26 12:47:03.179 selected: model.Position@5b725523, clickedPiece: WP
+2026-07-26 12:47:03.179 selectedPiece: BP, clickedPiece: WP
+2026-07-26 12:47:03.179 clickedPiece color: W, selectedPiece color: B
+2026-07-26 12:47:03.179 Attempting move from model.Position@5b725523 to model.Position@77f61aee
+2026-07-26 12:47:03.786 Click at: model.Position@18cfae8
+2026-07-26 12:47:03.786 selected: null, clickedPiece: BP
+2026-07-26 12:47:03.787 Selected piece at: model.Position@18cfae8
+2026-07-26 12:47:04.701 Click at: model.Position@2def3c83
+2026-07-26 12:47:04.702 selected: model.Position@18cfae8, clickedPiece: BP
+2026-07-26 12:47:04.702 selectedPiece: BP, clickedPiece: BP
+2026-07-26 12:47:04.702 clickedPiece color: B, selectedPiece color: B
+2026-07-26 12:47:04.704 Changed selection to: model.Position@2def3c83
+2026-07-26 12:47:06.511 Click at: model.Position@6f7df43b
+2026-07-26 12:47:06.511 selected: model.Position@2def3c83, clickedPiece: WP
+2026-07-26 12:47:06.512 selectedPiece: BP, clickedPiece: WP
+2026-07-26 12:47:06.512 clickedPiece color: W, selectedPiece color: B
+2026-07-26 12:47:06.512 Attempting move from model.Position@2def3c83 to model.Position@6f7df43b
+2026-07-26 12:47:06.512 [GameController] onMoveRequested: from=model.Position@2def3c83 to=model.Position@6f7df43b color=BLACK playerColor=B
+2026-07-26 12:47:06.514 [GameController] sendMove: MOVE 5 0 6 1 true
+2026-07-26 12:47:06.514 SEND: MOVE 5 0 6 1 true
+2026-07-26 12:47:06.516 RECV: MOVE 1 5 0 6 1 true | handlers: 2
+2026-07-26 12:47:06.516 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:06.518 DISPATCH to engine.GameController
+2026-07-26 12:47:06.518 [GameController] handleMessage: MOVE 1 5 0 6 1 true
+2026-07-26 12:47:06.518 RECV: SOUND eat | handlers: 2
+2026-07-26 12:47:06.518 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:06.520 DISPATCH to engine.GameController
+2026-07-26 12:47:06.520 [GameController] handleMessage: SOUND eat
+2026-07-26 12:47:06.546 [GameController] handleNetworkMessage: MOVE 1 5 0 6 1 true
+2026-07-26 12:47:06.546 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:47:06.546 [GameController] MOVE parsed: (5,0) -> (6,1)
+2026-07-26 12:47:06.552 [GameController] handleNetworkMessage: SOUND eat
+2026-07-26 12:47:06.552 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:47:08.183 Click at: model.Position@c4ba2a5
+2026-07-26 12:47:08.184 selected: null, clickedPiece: BP
+2026-07-26 12:47:08.184 Selected piece at: model.Position@c4ba2a5
+2026-07-26 12:47:08.924 Click at: model.Position@47b80a8e
+2026-07-26 12:47:08.925 selected: model.Position@c4ba2a5, clickedPiece: WR
+2026-07-26 12:47:08.925 selectedPiece: BP, clickedPiece: WR
+2026-07-26 12:47:08.925 clickedPiece color: W, selectedPiece color: B
+2026-07-26 12:47:08.925 Attempting move from model.Position@c4ba2a5 to model.Position@47b80a8e
+2026-07-26 12:47:08.926 [GameController] onMoveRequested: from=model.Position@c4ba2a5 to=model.Position@47b80a8e color=BLACK playerColor=B
+2026-07-26 12:47:08.927 [GameController] sendMove: MOVE 6 1 7 0 true
+2026-07-26 12:47:08.927 SEND: MOVE 6 1 7 0 true
+2026-07-26 12:47:08.929 RECV: MOVE 1 6 1 7 0 true | handlers: 2
+2026-07-26 12:47:08.930 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:08.931 DISPATCH to engine.GameController
+2026-07-26 12:47:08.931 [GameController] handleMessage: MOVE 1 6 1 7 0 true
+2026-07-26 12:47:08.931 RECV: SOUND eat | handlers: 2
+2026-07-26 12:47:08.931 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:08.932 DISPATCH to engine.GameController
+2026-07-26 12:47:08.932 [GameController] handleMessage: SOUND eat
+2026-07-26 12:47:08.948 [GameController] handleNetworkMessage: MOVE 1 6 1 7 0 true
+2026-07-26 12:47:08.948 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:47:08.949 [GameController] MOVE parsed: (6,1) -> (7,0)
+2026-07-26 12:47:08.952 [GameController] handleNetworkMessage: SOUND eat
+2026-07-26 12:47:08.952 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:47:12.141 Click at: model.Position@43f9d8dd
+2026-07-26 12:47:12.142 selected: null, clickedPiece: BQ
+2026-07-26 12:47:12.142 Selected piece at: model.Position@43f9d8dd
+2026-07-26 12:47:12.810 Click at: model.Position@5937f549
+2026-07-26 12:47:12.810 selected: model.Position@43f9d8dd, clickedPiece: WN
+2026-07-26 12:47:12.810 selectedPiece: BQ, clickedPiece: WN
+2026-07-26 12:47:12.811 clickedPiece color: W, selectedPiece color: B
+2026-07-26 12:47:12.811 Attempting move from model.Position@43f9d8dd to model.Position@5937f549
+2026-07-26 12:47:12.812 [GameController] onMoveRequested: from=model.Position@43f9d8dd to=model.Position@5937f549 color=BLACK playerColor=B
+2026-07-26 12:47:12.812 [GameController] sendMove: MOVE 7 0 7 1 true
+2026-07-26 12:47:12.812 SEND: MOVE 7 0 7 1 true
+2026-07-26 12:47:12.815 RECV: MOVE 1 7 0 7 1 true | handlers: 2
+2026-07-26 12:47:12.815 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:12.815 DISPATCH to engine.GameController
+2026-07-26 12:47:12.816 [GameController] handleMessage: MOVE 1 7 0 7 1 true
+2026-07-26 12:47:12.816 RECV: SOUND eat | handlers: 2
+2026-07-26 12:47:12.816 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:12.817 DISPATCH to engine.GameController
+2026-07-26 12:47:12.817 [GameController] handleMessage: SOUND eat
+2026-07-26 12:47:12.840 [GameController] handleNetworkMessage: MOVE 1 7 0 7 1 true
+2026-07-26 12:47:12.840 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:47:12.840 [GameController] MOVE parsed: (7,0) -> (7,1)
+2026-07-26 12:47:12.844 [GameController] handleNetworkMessage: SOUND eat
+2026-07-26 12:47:12.845 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:47:14.636 Click at: model.Position@7820f944
+2026-07-26 12:47:14.638 selected: null, clickedPiece: BQ
+2026-07-26 12:47:14.638 Selected piece at: model.Position@7820f944
+2026-07-26 12:47:15.602 Click at: model.Position@6bfb1ad9
+2026-07-26 12:47:15.602 selected: model.Position@7820f944, clickedPiece: WP
+2026-07-26 12:47:15.602 selectedPiece: BQ, clickedPiece: WP
+2026-07-26 12:47:15.604 clickedPiece color: W, selectedPiece color: B
+2026-07-26 12:47:15.604 Attempting move from model.Position@7820f944 to model.Position@6bfb1ad9
+2026-07-26 12:47:15.604 [GameController] onMoveRequested: from=model.Position@7820f944 to=model.Position@6bfb1ad9 color=BLACK playerColor=B
+2026-07-26 12:47:15.604 [GameController] sendMove: MOVE 7 1 6 0 true
+2026-07-26 12:47:15.604 SEND: MOVE 7 1 6 0 true
+2026-07-26 12:47:15.605 RECV: MOVE 1 7 1 6 0 true | handlers: 2
+2026-07-26 12:47:15.605 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:15.607 DISPATCH to engine.GameController
+2026-07-26 12:47:15.607 [GameController] handleMessage: MOVE 1 7 1 6 0 true
+2026-07-26 12:47:15.607 RECV: SOUND eat | handlers: 2
+2026-07-26 12:47:15.607 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:15.607 [GameController] handleNetworkMessage: MOVE 1 7 1 6 0 true
+2026-07-26 12:47:15.607 DISPATCH to engine.GameController
+2026-07-26 12:47:15.608 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:47:15.608 [GameController] MOVE parsed: (7,1) -> (6,0)
+2026-07-26 12:47:15.608 [GameController] handleMessage: SOUND eat
+2026-07-26 12:47:15.614 [GameController] handleNetworkMessage: SOUND eat
+2026-07-26 12:47:15.616 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:47:17.474 Click at: model.Position@1087216
+2026-07-26 12:47:17.476 selected: null, clickedPiece: BQ
+2026-07-26 12:47:17.476 Selected piece at: model.Position@1087216
+2026-07-26 12:47:19.761 Click at: model.Position@3c484386
+2026-07-26 12:47:19.762 selected: model.Position@1087216, clickedPiece: null
+2026-07-26 12:47:19.762 selectedPiece: BQ, clickedPiece: null
+2026-07-26 12:47:19.762 Attempting move from model.Position@1087216 to model.Position@3c484386
+2026-07-26 12:47:19.762 [GameController] onMoveRequested: from=model.Position@1087216 to=model.Position@3c484386 color=BLACK playerColor=B
+2026-07-26 12:47:19.764 [GameController] sendMove: MOVE 6 0 4 2 false
+2026-07-26 12:47:19.764 SEND: MOVE 6 0 4 2 false
+2026-07-26 12:47:19.767 RECV: MOVE 1 6 0 4 2 false | handlers: 2
+2026-07-26 12:47:19.768 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:19.768 DISPATCH to engine.GameController
+2026-07-26 12:47:19.769 [GameController] handleMessage: MOVE 1 6 0 4 2 false
+2026-07-26 12:47:19.770 RECV: SOUND move | handlers: 2
+2026-07-26 12:47:19.770 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:19.771 DISPATCH to engine.GameController
+2026-07-26 12:47:19.771 [GameController] handleMessage: SOUND move
+2026-07-26 12:47:19.773 [GameController] handleNetworkMessage: MOVE 1 6 0 4 2 false
+2026-07-26 12:47:19.773 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:47:19.774 [GameController] MOVE parsed: (6,0) -> (4,2)
+2026-07-26 12:47:19.783 [GameController] handleNetworkMessage: SOUND move
+2026-07-26 12:47:19.783 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:47:22.158 Click at: model.Position@45c02560
+2026-07-26 12:47:22.158 selected: null, clickedPiece: BQ
+2026-07-26 12:47:22.159 Selected piece at: model.Position@45c02560
+2026-07-26 12:47:23.883 Click at: model.Position@31947b20
+2026-07-26 12:47:23.884 selected: model.Position@45c02560, clickedPiece: WP
+2026-07-26 12:47:23.884 selectedPiece: BQ, clickedPiece: WP
+2026-07-26 12:47:23.884 clickedPiece color: W, selectedPiece color: B
+2026-07-26 12:47:23.885 Attempting move from model.Position@45c02560 to model.Position@31947b20
+2026-07-26 12:47:23.885 [GameController] onMoveRequested: from=model.Position@45c02560 to=model.Position@31947b20 color=BLACK playerColor=B
+2026-07-26 12:47:23.885 [GameController] sendMove: MOVE 4 2 6 2 true
+2026-07-26 12:47:23.886 SEND: MOVE 4 2 6 2 true
+2026-07-26 12:47:23.887 RECV: MOVE 1 4 2 6 2 true | handlers: 2
+2026-07-26 12:47:23.888 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:23.888 DISPATCH to engine.GameController
+2026-07-26 12:47:23.888 [GameController] handleMessage: MOVE 1 4 2 6 2 true
+2026-07-26 12:47:23.889 RECV: SOUND eat | handlers: 2
+2026-07-26 12:47:23.889 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:23.890 DISPATCH to engine.GameController
+2026-07-26 12:47:23.890 [GameController] handleMessage: SOUND eat
+2026-07-26 12:47:23.891 [GameController] handleNetworkMessage: MOVE 1 4 2 6 2 true
+2026-07-26 12:47:23.893 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:47:23.893 [GameController] MOVE parsed: (4,2) -> (6,2)
+2026-07-26 12:47:23.925 [GameController] handleNetworkMessage: SOUND eat
+2026-07-26 12:47:23.926 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:47:25.650 Click at: model.Position@7ae9fa21
+2026-07-26 12:47:25.652 selected: null, clickedPiece: BQ
+2026-07-26 12:47:25.652 Selected piece at: model.Position@7ae9fa21
+2026-07-26 12:47:27.289 Click at: model.Position@2bd972f2
+2026-07-26 12:47:27.290 selected: model.Position@7ae9fa21, clickedPiece: WK
+2026-07-26 12:47:27.291 selectedPiece: BQ, clickedPiece: WK
+2026-07-26 12:47:27.291 clickedPiece color: W, selectedPiece color: B
+2026-07-26 12:47:27.291 Attempting move from model.Position@7ae9fa21 to model.Position@2bd972f2
+2026-07-26 12:47:28.531 Click at: model.Position@6d9b8273
+2026-07-26 12:47:28.532 selected: null, clickedPiece: BQ
+2026-07-26 12:47:28.532 Selected piece at: model.Position@6d9b8273
+2026-07-26 12:47:29.737 Click at: model.Position@7a05baae
+2026-07-26 12:47:29.737 selected: model.Position@6d9b8273, clickedPiece: BQ
+2026-07-26 12:47:29.737 selectedPiece: BQ, clickedPiece: BQ
+2026-07-26 12:47:29.737 clickedPiece color: B, selectedPiece color: B
+2026-07-26 12:47:29.739 Changed selection to: model.Position@7a05baae
+2026-07-26 12:47:31.279 Click at: model.Position@28dc7730
+2026-07-26 12:47:31.279 selected: model.Position@7a05baae, clickedPiece: WP
+2026-07-26 12:47:31.281 selectedPiece: BQ, clickedPiece: WP
+2026-07-26 12:47:31.281 clickedPiece color: W, selectedPiece color: B
+2026-07-26 12:47:31.281 Attempting move from model.Position@7a05baae to model.Position@28dc7730
+2026-07-26 12:47:32.153 Click at: model.Position@170fbd3d
+2026-07-26 12:47:32.154 selected: null, clickedPiece: WP
+2026-07-26 12:47:32.154 Selected piece at: model.Position@170fbd3d
+2026-07-26 12:47:32.695 Click at: model.Position@45b82a8d
+2026-07-26 12:47:32.695 selected: model.Position@170fbd3d, clickedPiece: BQ
+2026-07-26 12:47:32.695 selectedPiece: WP, clickedPiece: BQ
+2026-07-26 12:47:32.695 clickedPiece color: B, selectedPiece color: W
+2026-07-26 12:47:32.696 Attempting move from model.Position@170fbd3d to model.Position@45b82a8d
+2026-07-26 12:47:33.949 Click at: model.Position@6f66424
+2026-07-26 12:47:33.949 selected: null, clickedPiece: BQ
+2026-07-26 12:47:33.949 Selected piece at: model.Position@6f66424
+2026-07-26 12:47:36.124 Click at: model.Position@5e302749
+2026-07-26 12:47:36.124 selected: model.Position@6f66424, clickedPiece: WP
+2026-07-26 12:47:36.124 selectedPiece: BQ, clickedPiece: WP
+2026-07-26 12:47:36.124 clickedPiece color: W, selectedPiece color: B
+2026-07-26 12:47:36.125 Attempting move from model.Position@6f66424 to model.Position@5e302749
+2026-07-26 12:47:36.126 [GameController] onMoveRequested: from=model.Position@6f66424 to=model.Position@5e302749 color=BLACK playerColor=B
+2026-07-26 12:47:36.126 [GameController] sendMove: MOVE 6 2 6 3 true
+2026-07-26 12:47:36.126 SEND: MOVE 6 2 6 3 true
+2026-07-26 12:47:36.129 RECV: MOVE 1 6 2 6 3 true | handlers: 2
+2026-07-26 12:47:36.129 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:36.130 DISPATCH to engine.GameController
+2026-07-26 12:47:36.130 [GameController] handleMessage: MOVE 1 6 2 6 3 true
+2026-07-26 12:47:36.130 RECV: SOUND eat | handlers: 2
+2026-07-26 12:47:36.130 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:36.130 DISPATCH to engine.GameController
+2026-07-26 12:47:36.130 [GameController] handleMessage: SOUND eat
+2026-07-26 12:47:36.141 [GameController] handleNetworkMessage: MOVE 1 6 2 6 3 true
+2026-07-26 12:47:36.142 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:47:36.142 [GameController] MOVE parsed: (6,2) -> (6,3)
+2026-07-26 12:47:36.146 [GameController] handleNetworkMessage: SOUND eat
+2026-07-26 12:47:36.146 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:47:37.505 Click at: model.Position@7a36ab2a
+2026-07-26 12:47:37.505 selected: null, clickedPiece: BQ
+2026-07-26 12:47:37.506 Selected piece at: model.Position@7a36ab2a
+2026-07-26 12:47:39.840 Click at: model.Position@47e77c07
+2026-07-26 12:47:39.841 selected: model.Position@7a36ab2a, clickedPiece: null
+2026-07-26 12:47:39.841 selectedPiece: BQ, clickedPiece: null
+2026-07-26 12:47:39.841 Attempting move from model.Position@7a36ab2a to model.Position@47e77c07
+2026-07-26 12:47:39.841 [GameController] onMoveRequested: from=model.Position@7a36ab2a to=model.Position@47e77c07 color=BLACK playerColor=B
+2026-07-26 12:47:39.841 [GameController] sendMove: MOVE 6 3 4 5 false
+2026-07-26 12:47:39.842 SEND: MOVE 6 3 4 5 false
+2026-07-26 12:47:39.844 RECV: MOVE 1 6 3 4 5 false | handlers: 2
+2026-07-26 12:47:39.844 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:39.844 DISPATCH to engine.GameController
+2026-07-26 12:47:39.845 [GameController] handleMessage: MOVE 1 6 3 4 5 false
+2026-07-26 12:47:39.845 RECV: SOUND move | handlers: 2
+2026-07-26 12:47:39.845 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:39.846 DISPATCH to engine.GameController
+2026-07-26 12:47:39.847 [GameController] handleMessage: SOUND move
+2026-07-26 12:47:39.865 [GameController] handleNetworkMessage: MOVE 1 6 3 4 5 false
+2026-07-26 12:47:39.865 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:47:39.865 [GameController] MOVE parsed: (6,3) -> (4,5)
+2026-07-26 12:47:39.870 [GameController] handleNetworkMessage: SOUND move
+2026-07-26 12:47:39.870 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:47:42.759 Click at: model.Position@78d7c9ce
+2026-07-26 12:47:42.759 selected: null, clickedPiece: BQ
+2026-07-26 12:47:42.760 Selected piece at: model.Position@78d7c9ce
+2026-07-26 12:47:43.704 Click at: model.Position@75127e21
+2026-07-26 12:47:43.704 selected: model.Position@78d7c9ce, clickedPiece: WN
+2026-07-26 12:47:43.704 selectedPiece: BQ, clickedPiece: WN
+2026-07-26 12:47:43.704 clickedPiece color: W, selectedPiece color: B
+2026-07-26 12:47:43.704 Attempting move from model.Position@78d7c9ce to model.Position@75127e21
+2026-07-26 12:47:44.540 Click at: model.Position@37437c39
+2026-07-26 12:47:44.540 selected: null, clickedPiece: BQ
+2026-07-26 12:47:44.541 Selected piece at: model.Position@37437c39
+2026-07-26 12:47:45.444 Click at: model.Position@4715844a
+2026-07-26 12:47:45.444 selected: model.Position@37437c39, clickedPiece: WB
+2026-07-26 12:47:45.444 selectedPiece: BQ, clickedPiece: WB
+2026-07-26 12:47:45.445 clickedPiece color: W, selectedPiece color: B
+2026-07-26 12:47:45.445 Attempting move from model.Position@37437c39 to model.Position@4715844a
+2026-07-26 12:47:46.448 Click at: model.Position@6e98cb0c
+2026-07-26 12:47:46.449 selected: null, clickedPiece: BQ
+2026-07-26 12:47:46.449 Selected piece at: model.Position@6e98cb0c
+2026-07-26 12:47:47.115 Click at: model.Position@2e223289
+2026-07-26 12:47:47.116 selected: model.Position@6e98cb0c, clickedPiece: null
+2026-07-26 12:47:47.116 selectedPiece: BQ, clickedPiece: null
+2026-07-26 12:47:47.118 Attempting move from model.Position@6e98cb0c to model.Position@2e223289
+2026-07-26 12:47:47.118 [GameController] onMoveRequested: from=model.Position@6e98cb0c to=model.Position@2e223289 color=BLACK playerColor=B
+2026-07-26 12:47:47.118 [GameController] sendMove: MOVE 4 5 5 5 false
+2026-07-26 12:47:47.118 SEND: MOVE 4 5 5 5 false
+2026-07-26 12:47:47.119 RECV: MOVE 1 4 5 5 5 false | handlers: 2
+2026-07-26 12:47:47.121 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:47.121 DISPATCH to engine.GameController
+2026-07-26 12:47:47.121 [GameController] handleMessage: MOVE 1 4 5 5 5 false
+2026-07-26 12:47:47.122 RECV: SOUND move | handlers: 2
+2026-07-26 12:47:47.122 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:47.122 DISPATCH to engine.GameController
+2026-07-26 12:47:47.122 [GameController] handleMessage: SOUND move
+2026-07-26 12:47:47.126 [GameController] handleNetworkMessage: MOVE 1 4 5 5 5 false
+2026-07-26 12:47:47.128 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:47:47.129 [GameController] MOVE parsed: (4,5) -> (5,5)
+2026-07-26 12:47:47.133 [GameController] handleNetworkMessage: SOUND move
+2026-07-26 12:47:47.134 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:47:48.576 Click at: model.Position@26d516d7
+2026-07-26 12:47:48.576 selected: null, clickedPiece: BQ
+2026-07-26 12:47:48.576 Selected piece at: model.Position@26d516d7
+2026-07-26 12:47:49.588 Click at: model.Position@3c9f229b
+2026-07-26 12:47:49.589 selected: model.Position@26d516d7, clickedPiece: WB
+2026-07-26 12:47:49.589 selectedPiece: BQ, clickedPiece: WB
+2026-07-26 12:47:49.589 clickedPiece color: W, selectedPiece color: B
+2026-07-26 12:47:49.589 Attempting move from model.Position@26d516d7 to model.Position@3c9f229b
+2026-07-26 12:47:50.553 Click at: model.Position@2f028348
+2026-07-26 12:47:50.554 selected: null, clickedPiece: BQ
+2026-07-26 12:47:50.554 Selected piece at: model.Position@2f028348
+2026-07-26 12:47:51.622 Click at: model.Position@41203025
+2026-07-26 12:47:51.624 selected: model.Position@2f028348, clickedPiece: WQ
+2026-07-26 12:47:51.624 selectedPiece: BQ, clickedPiece: WQ
+2026-07-26 12:47:51.624 clickedPiece color: W, selectedPiece color: B
+2026-07-26 12:47:51.625 Attempting move from model.Position@2f028348 to model.Position@41203025
+2026-07-26 12:47:52.783 Click at: model.Position@61719f5a
+2026-07-26 12:47:52.783 selected: null, clickedPiece: BQ
+2026-07-26 12:47:52.784 Selected piece at: model.Position@61719f5a
+2026-07-26 12:47:53.547 Click at: model.Position@3da1565d
+2026-07-26 12:47:53.548 selected: model.Position@61719f5a, clickedPiece: WP
+2026-07-26 12:47:53.548 selectedPiece: BQ, clickedPiece: WP
+2026-07-26 12:47:53.549 clickedPiece color: W, selectedPiece color: B
+2026-07-26 12:47:53.549 Attempting move from model.Position@61719f5a to model.Position@3da1565d
+2026-07-26 12:47:53.549 [GameController] onMoveRequested: from=model.Position@61719f5a to=model.Position@3da1565d color=BLACK playerColor=B
+2026-07-26 12:47:53.550 [GameController] sendMove: MOVE 5 5 6 4 true
+2026-07-26 12:47:53.550 SEND: MOVE 5 5 6 4 true
+2026-07-26 12:47:53.552 RECV: MOVE 1 5 5 6 4 true | handlers: 2
+2026-07-26 12:47:53.553 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:53.554 DISPATCH to engine.GameController
+2026-07-26 12:47:53.554 [GameController] handleMessage: MOVE 1 5 5 6 4 true
+2026-07-26 12:47:53.554 RECV: SOUND eat | handlers: 2
+2026-07-26 12:47:53.555 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:53.555 DISPATCH to engine.GameController
+2026-07-26 12:47:53.555 [GameController] handleMessage: SOUND eat
+2026-07-26 12:47:53.556 [GameController] handleNetworkMessage: MOVE 1 5 5 6 4 true
+2026-07-26 12:47:53.557 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:47:53.559 [GameController] MOVE parsed: (5,5) -> (6,4)
+2026-07-26 12:47:53.563 [GameController] handleNetworkMessage: SOUND eat
+2026-07-26 12:47:53.564 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:47:55.404 Click at: model.Position@332fbeeb
+2026-07-26 12:47:55.404 selected: null, clickedPiece: BQ
+2026-07-26 12:47:55.405 Selected piece at: model.Position@332fbeeb
+2026-07-26 12:47:56.070 Click at: model.Position@1a3557fe
+2026-07-26 12:47:56.071 selected: model.Position@332fbeeb, clickedPiece: WP
+2026-07-26 12:47:56.071 selectedPiece: BQ, clickedPiece: WP
+2026-07-26 12:47:56.071 clickedPiece color: W, selectedPiece color: B
+2026-07-26 12:47:56.071 Attempting move from model.Position@332fbeeb to model.Position@1a3557fe
+2026-07-26 12:47:56.072 [GameController] onMoveRequested: from=model.Position@332fbeeb to=model.Position@1a3557fe color=BLACK playerColor=B
+2026-07-26 12:47:56.072 [GameController] sendMove: MOVE 6 4 6 5 true
+2026-07-26 12:47:56.072 SEND: MOVE 6 4 6 5 true
+2026-07-26 12:47:56.075 RECV: MOVE 1 6 4 6 5 true | handlers: 2
+2026-07-26 12:47:56.075 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:56.075 DISPATCH to engine.GameController
+2026-07-26 12:47:56.075 [GameController] handleMessage: MOVE 1 6 4 6 5 true
+2026-07-26 12:47:56.075 RECV: SOUND eat | handlers: 2
+2026-07-26 12:47:56.076 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:56.076 DISPATCH to engine.GameController
+2026-07-26 12:47:56.077 [GameController] handleMessage: SOUND eat
+2026-07-26 12:47:56.077 [GameController] handleNetworkMessage: MOVE 1 6 4 6 5 true
+2026-07-26 12:47:56.078 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:47:56.078 [GameController] MOVE parsed: (6,4) -> (6,5)
+2026-07-26 12:47:56.086 [GameController] handleNetworkMessage: SOUND eat
+2026-07-26 12:47:56.086 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:47:57.387 Click at: model.Position@1d9f4ada
+2026-07-26 12:47:57.387 selected: null, clickedPiece: BQ
+2026-07-26 12:47:57.388 Selected piece at: model.Position@1d9f4ada
+2026-07-26 12:47:58.125 Click at: model.Position@60762d1a
+2026-07-26 12:47:58.125 selected: model.Position@1d9f4ada, clickedPiece: WP
+2026-07-26 12:47:58.125 selectedPiece: BQ, clickedPiece: WP
+2026-07-26 12:47:58.125 clickedPiece color: W, selectedPiece color: B
+2026-07-26 12:47:58.125 Attempting move from model.Position@1d9f4ada to model.Position@60762d1a
+2026-07-26 12:47:58.925 Click at: model.Position@2ad019e9
+2026-07-26 12:47:58.925 selected: null, clickedPiece: BQ
+2026-07-26 12:47:58.925 Selected piece at: model.Position@2ad019e9
+2026-07-26 12:48:00.372 Click at: model.Position@7f892abf
+2026-07-26 12:48:00.373 selected: model.Position@2ad019e9, clickedPiece: WN
+2026-07-26 12:48:00.373 selectedPiece: BQ, clickedPiece: WN
+2026-07-26 12:48:00.374 clickedPiece color: W, selectedPiece color: B
+2026-07-26 12:48:00.374 Attempting move from model.Position@2ad019e9 to model.Position@7f892abf
+2026-07-26 12:48:00.374 [GameController] onMoveRequested: from=model.Position@2ad019e9 to=model.Position@7f892abf color=BLACK playerColor=B
+2026-07-26 12:48:00.374 [GameController] sendMove: MOVE 6 5 7 6 true
+2026-07-26 12:48:00.375 SEND: MOVE 6 5 7 6 true
+2026-07-26 12:48:00.376 RECV: MOVE 1 6 5 7 6 true | handlers: 2
+2026-07-26 12:48:00.377 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:00.377 DISPATCH to engine.GameController
+2026-07-26 12:48:00.377 [GameController] handleMessage: MOVE 1 6 5 7 6 true
+2026-07-26 12:48:00.378 RECV: SOUND eat | handlers: 2
+2026-07-26 12:48:00.382 [GameController] handleNetworkMessage: MOVE 1 6 5 7 6 true
+2026-07-26 12:48:00.383 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:00.383 DISPATCH to engine.GameController
+2026-07-26 12:48:00.383 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:48:00.384 [GameController] handleMessage: SOUND eat
+2026-07-26 12:48:00.384 [GameController] MOVE parsed: (6,5) -> (7,6)
+2026-07-26 12:48:00.411 [GameController] handleNetworkMessage: SOUND eat
+2026-07-26 12:48:00.411 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:48:01.992 Click at: model.Position@68d182cf
+2026-07-26 12:48:01.992 selected: null, clickedPiece: BQ
+2026-07-26 12:48:01.992 Selected piece at: model.Position@68d182cf
+2026-07-26 12:48:02.728 Click at: model.Position@6a53e7db
+2026-07-26 12:48:02.728 selected: model.Position@68d182cf, clickedPiece: WR
+2026-07-26 12:48:02.728 selectedPiece: BQ, clickedPiece: WR
+2026-07-26 12:48:02.728 clickedPiece color: W, selectedPiece color: B
+2026-07-26 12:48:02.729 Attempting move from model.Position@68d182cf to model.Position@6a53e7db
+2026-07-26 12:48:02.729 [GameController] onMoveRequested: from=model.Position@68d182cf to=model.Position@6a53e7db color=BLACK playerColor=B
+2026-07-26 12:48:02.729 [GameController] sendMove: MOVE 7 6 7 7 true
+2026-07-26 12:48:02.729 SEND: MOVE 7 6 7 7 true
+2026-07-26 12:48:02.731 RECV: MOVE 1 7 6 7 7 true | handlers: 2
+2026-07-26 12:48:02.731 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:02.732 DISPATCH to engine.GameController
+2026-07-26 12:48:02.732 [GameController] handleMessage: MOVE 1 7 6 7 7 true
+2026-07-26 12:48:02.732 RECV: SOUND eat | handlers: 2
+2026-07-26 12:48:02.732 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:02.732 DISPATCH to engine.GameController
+2026-07-26 12:48:02.733 [GameController] handleMessage: SOUND eat
+2026-07-26 12:48:02.734 [GameController] handleNetworkMessage: MOVE 1 7 6 7 7 true
+2026-07-26 12:48:02.734 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:48:02.734 [GameController] MOVE parsed: (7,6) -> (7,7)
+2026-07-26 12:48:02.738 [GameController] handleNetworkMessage: SOUND eat
+2026-07-26 12:48:02.739 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:48:04.238 Click at: model.Position@41a547fe
+2026-07-26 12:48:04.238 selected: null, clickedPiece: BQ
+2026-07-26 12:48:04.239 Selected piece at: model.Position@41a547fe
+2026-07-26 12:48:04.938 Click at: model.Position@15d774ce
+2026-07-26 12:48:04.938 selected: model.Position@41a547fe, clickedPiece: WP
+2026-07-26 12:48:04.938 selectedPiece: BQ, clickedPiece: WP
+2026-07-26 12:48:04.939 clickedPiece color: W, selectedPiece color: B
+2026-07-26 12:48:04.939 Attempting move from model.Position@41a547fe to model.Position@15d774ce
+2026-07-26 12:48:04.939 [GameController] onMoveRequested: from=model.Position@41a547fe to=model.Position@15d774ce color=BLACK playerColor=B
+2026-07-26 12:48:04.939 [GameController] sendMove: MOVE 7 7 6 7 true
+2026-07-26 12:48:04.939 SEND: MOVE 7 7 6 7 true
+2026-07-26 12:48:04.941 RECV: MOVE 1 7 7 6 7 true | handlers: 2
+2026-07-26 12:48:04.942 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:04.942 DISPATCH to engine.GameController
+2026-07-26 12:48:04.942 [GameController] handleMessage: MOVE 1 7 7 6 7 true
+2026-07-26 12:48:04.942 RECV: SOUND eat | handlers: 2
+2026-07-26 12:48:04.944 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:04.944 DISPATCH to engine.GameController
+2026-07-26 12:48:04.944 [GameController] handleMessage: SOUND eat
+2026-07-26 12:48:04.945 [GameController] handleNetworkMessage: MOVE 1 7 7 6 7 true
+2026-07-26 12:48:04.945 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:48:04.946 [GameController] MOVE parsed: (7,7) -> (6,7)
+2026-07-26 12:48:04.951 [GameController] handleNetworkMessage: SOUND eat
+2026-07-26 12:48:04.951 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:48:06.249 Click at: model.Position@76d7ade0
+2026-07-26 12:48:06.249 selected: null, clickedPiece: BQ
+2026-07-26 12:48:06.250 Selected piece at: model.Position@76d7ade0
+2026-07-26 12:48:06.886 Click at: model.Position@70f72ac3
+2026-07-26 12:48:06.886 selected: model.Position@76d7ade0, clickedPiece: WP
+2026-07-26 12:48:06.886 selectedPiece: BQ, clickedPiece: WP
+2026-07-26 12:48:06.887 clickedPiece color: W, selectedPiece color: B
+2026-07-26 12:48:06.887 Attempting move from model.Position@76d7ade0 to model.Position@70f72ac3
+2026-07-26 12:48:06.887 [GameController] onMoveRequested: from=model.Position@76d7ade0 to=model.Position@70f72ac3 color=BLACK playerColor=B
+2026-07-26 12:48:06.887 [GameController] sendMove: MOVE 6 7 6 6 true
+2026-07-26 12:48:06.887 SEND: MOVE 6 7 6 6 true
+2026-07-26 12:48:06.890 RECV: MOVE 1 6 7 6 6 true | handlers: 2
+2026-07-26 12:48:06.891 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:06.891 DISPATCH to engine.GameController
+2026-07-26 12:48:06.891 [GameController] handleMessage: MOVE 1 6 7 6 6 true
+2026-07-26 12:48:06.892 RECV: SOUND eat | handlers: 2
+2026-07-26 12:48:06.893 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:06.893 DISPATCH to engine.GameController
+2026-07-26 12:48:06.893 [GameController] handleMessage: SOUND eat
+2026-07-26 12:48:06.893 [GameController] handleNetworkMessage: MOVE 1 6 7 6 6 true
+2026-07-26 12:48:06.895 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:48:06.895 [GameController] MOVE parsed: (6,7) -> (6,6)
+2026-07-26 12:48:06.898 [GameController] handleNetworkMessage: SOUND eat
+2026-07-26 12:48:06.898 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:48:08.445 Click at: model.Position@150cce70
+2026-07-26 12:48:08.445 selected: null, clickedPiece: BQ
+2026-07-26 12:48:08.445 Selected piece at: model.Position@150cce70
+2026-07-26 12:48:09.151 Click at: model.Position@3c969cb2
+2026-07-26 12:48:09.153 selected: model.Position@150cce70, clickedPiece: WK
+2026-07-26 12:48:09.153 selectedPiece: BQ, clickedPiece: WK
+2026-07-26 12:48:09.153 clickedPiece color: W, selectedPiece color: B
+2026-07-26 12:48:09.153 Attempting move from model.Position@150cce70 to model.Position@3c969cb2
+2026-07-26 12:48:10.018 Click at: model.Position@766c7967
+2026-07-26 12:48:10.018 selected: null, clickedPiece: BQ
+2026-07-26 12:48:10.018 Selected piece at: model.Position@766c7967
+2026-07-26 12:48:10.664 Click at: model.Position@6bcfccf5
+2026-07-26 12:48:10.664 selected: model.Position@766c7967, clickedPiece: WB
+2026-07-26 12:48:10.664 selectedPiece: BQ, clickedPiece: WB
+2026-07-26 12:48:10.664 clickedPiece color: W, selectedPiece color: B
+2026-07-26 12:48:10.665 Attempting move from model.Position@766c7967 to model.Position@6bcfccf5
+2026-07-26 12:48:10.665 [GameController] onMoveRequested: from=model.Position@766c7967 to=model.Position@6bcfccf5 color=BLACK playerColor=B
+2026-07-26 12:48:10.665 [GameController] sendMove: MOVE 6 6 7 5 true
+2026-07-26 12:48:10.665 SEND: MOVE 6 6 7 5 true
+2026-07-26 12:48:10.668 RECV: MOVE 1 6 6 7 5 true | handlers: 2
+2026-07-26 12:48:10.668 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:10.669 DISPATCH to engine.GameController
+2026-07-26 12:48:10.669 [GameController] handleMessage: MOVE 1 6 6 7 5 true
+2026-07-26 12:48:10.669 RECV: SOUND eat | handlers: 2
+2026-07-26 12:48:10.669 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:10.669 [GameController] handleNetworkMessage: MOVE 1 6 6 7 5 true
+2026-07-26 12:48:10.669 DISPATCH to engine.GameController
+2026-07-26 12:48:10.669 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:48:10.670 [GameController] handleMessage: SOUND eat
+2026-07-26 12:48:10.670 [GameController] MOVE parsed: (6,6) -> (7,5)
+2026-07-26 12:48:10.675 [GameController] handleNetworkMessage: SOUND eat
+2026-07-26 12:48:10.675 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:48:12.382 Click at: model.Position@212a62ad
+2026-07-26 12:48:12.382 selected: null, clickedPiece: BQ
+2026-07-26 12:48:12.383 Selected piece at: model.Position@212a62ad
+2026-07-26 12:48:14.397 Click at: model.Position@ede7ca9
+2026-07-26 12:48:14.397 selected: model.Position@212a62ad, clickedPiece: null
+2026-07-26 12:48:14.397 selectedPiece: BQ, clickedPiece: null
+2026-07-26 12:48:14.398 Attempting move from model.Position@212a62ad to model.Position@ede7ca9
+2026-07-26 12:48:14.399 [GameController] onMoveRequested: from=model.Position@212a62ad to=model.Position@ede7ca9 color=BLACK playerColor=B
+2026-07-26 12:48:14.399 [GameController] sendMove: MOVE 7 5 2 5 false
+2026-07-26 12:48:14.399 SEND: MOVE 7 5 2 5 false
+2026-07-26 12:48:14.401 RECV: MOVE 1 7 5 2 5 false | handlers: 2
+2026-07-26 12:48:14.402 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:14.402 DISPATCH to engine.GameController
+2026-07-26 12:48:14.402 [GameController] handleMessage: MOVE 1 7 5 2 5 false
+2026-07-26 12:48:14.402 RECV: SOUND move | handlers: 2
+2026-07-26 12:48:14.403 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:14.403 DISPATCH to engine.GameController
+2026-07-26 12:48:14.404 [GameController] handleMessage: SOUND move
+2026-07-26 12:48:14.405 [GameController] handleNetworkMessage: MOVE 1 7 5 2 5 false
+2026-07-26 12:48:14.405 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:48:14.405 [GameController] MOVE parsed: (7,5) -> (2,5)
+2026-07-26 12:48:14.416 [GameController] handleNetworkMessage: SOUND move
+2026-07-26 12:48:14.416 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:48:18.326 Click at: model.Position@c3c4b2e
+2026-07-26 12:48:18.326 selected: null, clickedPiece: BQ
+2026-07-26 12:48:18.326 Selected piece at: model.Position@c3c4b2e
+2026-07-26 12:48:18.901 Click at: model.Position@64e3a819
+2026-07-26 12:48:18.903 selected: model.Position@c3c4b2e, clickedPiece: BP
+2026-07-26 12:48:18.903 selectedPiece: BQ, clickedPiece: BP
+2026-07-26 12:48:18.903 clickedPiece color: B, selectedPiece color: B
+2026-07-26 12:48:18.904 Changed selection to: model.Position@64e3a819
+2026-07-26 12:48:19.917 Click at: model.Position@5865cdc1
+2026-07-26 12:48:19.917 selected: model.Position@64e3a819, clickedPiece: BQ
+2026-07-26 12:48:19.917 selectedPiece: BP, clickedPiece: BQ
+2026-07-26 12:48:19.918 clickedPiece color: B, selectedPiece color: B
+2026-07-26 12:48:19.918 Changed selection to: model.Position@5865cdc1
+2026-07-26 12:48:20.530 Click at: model.Position@4d042617
+2026-07-26 12:48:20.531 selected: model.Position@5865cdc1, clickedPiece: BP
+2026-07-26 12:48:20.531 selectedPiece: BQ, clickedPiece: BP
+2026-07-26 12:48:20.531 clickedPiece color: B, selectedPiece color: B
+2026-07-26 12:48:20.531 Changed selection to: model.Position@4d042617
+2026-07-26 12:48:21.320 Click at: model.Position@22119227
+2026-07-26 12:48:21.320 selected: model.Position@4d042617, clickedPiece: BQ
+2026-07-26 12:48:21.321 selectedPiece: BP, clickedPiece: BQ
+2026-07-26 12:48:21.321 clickedPiece color: B, selectedPiece color: B
+2026-07-26 12:48:21.321 Changed selection to: model.Position@22119227
+2026-07-26 12:48:23.869 Click at: model.Position@4638a993
+2026-07-26 12:48:23.870 selected: model.Position@22119227, clickedPiece: null
+2026-07-26 12:48:23.870 selectedPiece: BQ, clickedPiece: null
+2026-07-26 12:48:23.870 Attempting move from model.Position@22119227 to model.Position@4638a993
+2026-07-26 12:48:23.870 [GameController] onMoveRequested: from=model.Position@22119227 to=model.Position@4638a993 color=BLACK playerColor=B
+2026-07-26 12:48:23.870 [GameController] sendMove: MOVE 2 5 7 0 false
+2026-07-26 12:48:23.870 SEND: MOVE 2 5 7 0 false
+2026-07-26 12:48:23.873 RECV: MOVE 1 2 5 7 0 false | handlers: 2
+2026-07-26 12:48:23.873 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:23.873 DISPATCH to engine.GameController
+2026-07-26 12:48:23.873 [GameController] handleMessage: MOVE 1 2 5 7 0 false
+2026-07-26 12:48:23.875 RECV: SOUND move | handlers: 2
+2026-07-26 12:48:23.875 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:23.875 DISPATCH to engine.GameController
+2026-07-26 12:48:23.875 [GameController] handleMessage: SOUND move
+2026-07-26 12:48:23.894 [GameController] handleNetworkMessage: MOVE 1 2 5 7 0 false
+2026-07-26 12:48:23.894 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:48:23.895 [GameController] MOVE parsed: (2,5) -> (7,0)
+2026-07-26 12:48:23.899 [GameController] handleNetworkMessage: SOUND move
+2026-07-26 12:48:23.900 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:48:27.427 Click at: model.Position@64150c10
+2026-07-26 12:48:27.427 selected: null, clickedPiece: WB
+2026-07-26 12:48:27.428 Selected piece at: model.Position@64150c10
+2026-07-26 12:48:29.372 Click at: model.Position@7e106e0
+2026-07-26 12:48:29.372 selected: model.Position@64150c10, clickedPiece: null
+2026-07-26 12:48:29.373 selectedPiece: WB, clickedPiece: null
+2026-07-26 12:48:29.373 Attempting move from model.Position@64150c10 to model.Position@7e106e0
+2026-07-26 12:48:29.373 [GameController] onMoveRequested: from=model.Position@64150c10 to=model.Position@7e106e0 color=BLACK playerColor=B
+2026-07-26 12:48:29.373 [GameController] onMoveRequested blocked: moving=WB playerColor=B
+2026-07-26 12:48:30.032 Click at: model.Position@10ee87c6
+2026-07-26 12:48:30.032 selected: null, clickedPiece: BQ
+2026-07-26 12:48:30.032 Selected piece at: model.Position@10ee87c6
+2026-07-26 12:48:30.864 Click at: model.Position@a9ec5d3
+2026-07-26 12:48:30.864 selected: model.Position@10ee87c6, clickedPiece: WB
+2026-07-26 12:48:30.865 selectedPiece: BQ, clickedPiece: WB
+2026-07-26 12:48:30.865 clickedPiece color: W, selectedPiece color: B
+2026-07-26 12:48:30.865 Attempting move from model.Position@10ee87c6 to model.Position@a9ec5d3
+2026-07-26 12:48:30.865 [GameController] onMoveRequested: from=model.Position@10ee87c6 to=model.Position@a9ec5d3 color=BLACK playerColor=B
+2026-07-26 12:48:30.866 [GameController] sendMove: MOVE 7 0 7 2 true
+2026-07-26 12:48:30.866 SEND: MOVE 7 0 7 2 true
+2026-07-26 12:48:30.871 RECV: MOVE 1 7 0 7 2 true | handlers: 2
+2026-07-26 12:48:30.871 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:30.871 DISPATCH to engine.GameController
+2026-07-26 12:48:30.872 [GameController] handleMessage: MOVE 1 7 0 7 2 true
+2026-07-26 12:48:30.872 RECV: SOUND eat | handlers: 2
+2026-07-26 12:48:30.873 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:30.874 DISPATCH to engine.GameController
+2026-07-26 12:48:30.874 [GameController] handleMessage: SOUND eat
+2026-07-26 12:48:30.876 [GameController] handleNetworkMessage: MOVE 1 7 0 7 2 true
+2026-07-26 12:48:30.876 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:48:30.876 [GameController] MOVE parsed: (7,0) -> (7,2)
+2026-07-26 12:48:30.880 [GameController] handleNetworkMessage: SOUND eat
+2026-07-26 12:48:30.881 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:48:32.659 Click at: model.Position@614f60c
+2026-07-26 12:48:32.659 selected: null, clickedPiece: BQ
+2026-07-26 12:48:32.659 Selected piece at: model.Position@614f60c
+2026-07-26 12:48:34.172 Click at: model.Position@6bb4ef6f
+2026-07-26 12:48:34.174 selected: model.Position@614f60c, clickedPiece: BQ
+2026-07-26 12:48:34.174 selectedPiece: BQ, clickedPiece: BQ
+2026-07-26 12:48:34.174 clickedPiece color: B, selectedPiece color: B
+2026-07-26 12:48:34.174 Changed selection to: model.Position@6bb4ef6f
+2026-07-26 12:48:34.788 Click at: model.Position@2b45f916
+2026-07-26 12:48:34.789 selected: model.Position@6bb4ef6f, clickedPiece: null
+2026-07-26 12:48:34.789 selectedPiece: BQ, clickedPiece: null
+2026-07-26 12:48:34.789 Attempting move from model.Position@6bb4ef6f to model.Position@2b45f916
+2026-07-26 12:48:34.790 [GameController] onMoveRequested: from=model.Position@6bb4ef6f to=model.Position@2b45f916 color=BLACK playerColor=B
+2026-07-26 12:48:34.790 [GameController] sendMove: MOVE 7 2 6 3 false
+2026-07-26 12:48:34.790 SEND: MOVE 7 2 6 3 false
+2026-07-26 12:48:34.791 RECV: MOVE 1 7 2 6 3 false | handlers: 2
+2026-07-26 12:48:34.794 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:34.794 DISPATCH to engine.GameController
+2026-07-26 12:48:34.794 [GameController] handleMessage: MOVE 1 7 2 6 3 false
+2026-07-26 12:48:34.794 RECV: SOUND move | handlers: 2
+2026-07-26 12:48:34.794 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:34.794 DISPATCH to engine.GameController
+2026-07-26 12:48:34.795 [GameController] handleMessage: SOUND move
+2026-07-26 12:48:34.796 [GameController] handleNetworkMessage: MOVE 1 7 2 6 3 false
+2026-07-26 12:48:34.796 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:48:34.796 [GameController] MOVE parsed: (7,2) -> (6,3)
+2026-07-26 12:48:34.823 [GameController] handleNetworkMessage: SOUND move
+2026-07-26 12:48:34.823 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:48:36.295 Click at: model.Position@73ec2e0d
+2026-07-26 12:48:36.295 selected: null, clickedPiece: BQ
+2026-07-26 12:48:36.296 Selected piece at: model.Position@73ec2e0d
+2026-07-26 12:48:38.734 Click at: model.Position@1c213c70
+2026-07-26 12:48:38.734 selected: model.Position@73ec2e0d, clickedPiece: null
+2026-07-26 12:48:38.734 selectedPiece: BQ, clickedPiece: null
+2026-07-26 12:48:38.735 Attempting move from model.Position@73ec2e0d to model.Position@1c213c70
+2026-07-26 12:48:38.735 [GameController] onMoveRequested: from=model.Position@73ec2e0d to=model.Position@1c213c70 color=BLACK playerColor=B
+2026-07-26 12:48:38.735 [GameController] sendMove: MOVE 6 3 5 4 false
+2026-07-26 12:48:38.735 SEND: MOVE 6 3 5 4 false
+2026-07-26 12:48:38.738 RECV: MOVE 1 6 3 5 4 false | handlers: 2
+2026-07-26 12:48:38.739 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:38.739 DISPATCH to engine.GameController
+2026-07-26 12:48:38.739 [GameController] handleMessage: MOVE 1 6 3 5 4 false
+2026-07-26 12:48:38.740 RECV: SOUND move | handlers: 2
+2026-07-26 12:48:38.740 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:38.740 DISPATCH to engine.GameController
+2026-07-26 12:48:38.741 [GameController] handleMessage: SOUND move
+2026-07-26 12:48:38.742 [GameController] handleNetworkMessage: MOVE 1 6 3 5 4 false
+2026-07-26 12:48:38.743 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:48:38.743 [GameController] MOVE parsed: (6,3) -> (5,4)
+2026-07-26 12:48:38.749 [GameController] handleNetworkMessage: SOUND move
+2026-07-26 12:48:38.749 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:48:40.426 Click at: model.Position@71b30260
+2026-07-26 12:48:40.426 selected: null, clickedPiece: BQ
+2026-07-26 12:48:40.426 Selected piece at: model.Position@71b30260
+2026-07-26 12:48:43.184 Click at: model.Position@965fc51
+2026-07-26 12:48:43.184 selected: model.Position@71b30260, clickedPiece: BR
+2026-07-26 12:48:43.184 selectedPiece: BQ, clickedPiece: BR
+2026-07-26 12:48:43.185 clickedPiece color: B, selectedPiece color: B
+2026-07-26 12:48:43.185 Changed selection to: model.Position@965fc51
+2026-07-26 12:48:44.129 Click at: model.Position@107a07f2
+2026-07-26 12:48:44.130 selected: model.Position@965fc51, clickedPiece: BQ
+2026-07-26 12:48:44.130 selectedPiece: BR, clickedPiece: BQ
+2026-07-26 12:48:44.130 clickedPiece color: B, selectedPiece color: B
+2026-07-26 12:48:44.130 Changed selection to: model.Position@107a07f2
+2026-07-26 12:48:45.230 Click at: model.Position@28bb149d
+2026-07-26 12:48:45.230 selected: model.Position@107a07f2, clickedPiece: WK
+2026-07-26 12:48:45.230 selectedPiece: BQ, clickedPiece: WK
+2026-07-26 12:48:45.230 clickedPiece color: W, selectedPiece color: B
+2026-07-26 12:48:45.231 Attempting move from model.Position@107a07f2 to model.Position@28bb149d
+2026-07-26 12:48:45.231 [GameController] onMoveRequested: from=model.Position@107a07f2 to=model.Position@28bb149d color=BLACK playerColor=B
+2026-07-26 12:48:45.231 [GameController] sendMove: MOVE 5 4 7 4 true
+2026-07-26 12:48:45.231 SEND: MOVE 5 4 7 4 true
+2026-07-26 12:48:45.233 RECV: MOVE 1 5 4 7 4 true | handlers: 2
+2026-07-26 12:48:45.234 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:45.234 DISPATCH to engine.GameController
+2026-07-26 12:48:45.234 [GameController] handleMessage: MOVE 1 5 4 7 4 true
+2026-07-26 12:48:45.235 RECV: SOUND eat | handlers: 2
+2026-07-26 12:48:45.235 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:45.235 DISPATCH to engine.GameController
+2026-07-26 12:48:45.235 [GameController] handleNetworkMessage: MOVE 1 5 4 7 4 true
+2026-07-26 12:48:45.236 [GameController] handleMessage: SOUND eat
+2026-07-26 12:48:45.236 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:48:45.236 [GameController] MOVE parsed: (5,4) -> (7,4)
+2026-07-26 12:48:45.243 [GameController] handleNetworkMessage: SOUND eat
+2026-07-26 12:48:45.244 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:48:46.586 SEND: GAME_OVER BLACK
+2026-07-26 12:48:46.619 RECV: GAME_OVER BLACK | handlers: 2
+2026-07-26 12:48:46.621 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:46.622 DISPATCH to engine.GameController
+2026-07-26 12:48:46.622 [GameController] handleMessage: GAME_OVER BLACK
+2026-07-26 12:48:46.623 RECV: ELO_UPDATE David 1209 | handlers: 2
+2026-07-26 12:48:46.624 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:46.624 DISPATCH to engine.GameController
+2026-07-26 12:48:46.624 [GameController] handleMessage: ELO_UPDATE David 1209
+2026-07-26 12:48:46.625 RECV: ELO_UPDATE Chaim 1191 | handlers: 2
+2026-07-26 12:48:46.625 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:46.625 DISPATCH to engine.GameController
+2026-07-26 12:48:46.626 [GameController] handleMessage: ELO_UPDATE Chaim 1191
+2026-07-26 12:48:46.719 [GameController] handleNetworkMessage: GAME_OVER BLACK
+2026-07-26 12:48:46.720 [GameController] message type: GAME_OVER parts.length: 2
+2026-07-26 12:48:46.721 [GameController] handleNetworkMessage: ELO_UPDATE David 1209
+2026-07-26 12:48:46.722 [GameController] message type: ELO_UPDATE parts.length: 3
+2026-07-26 12:48:46.723 [GameController] handleNetworkMessage: ELO_UPDATE Chaim 1191
+2026-07-26 12:48:46.723 [GameController] message type: ELO_UPDATE parts.length: 3
+2026-07-26 12:49:16.811 Disconnected from server: 

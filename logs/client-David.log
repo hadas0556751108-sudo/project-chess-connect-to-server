@@ -1,15 +1,359 @@
-2026-07-22 15:32:21.763 Connected to server
-2026-07-22 15:32:21.766 Welcome to Chess Server
-2026-07-22 15:32:21.767 Commands: REGISTER <username> <password> | LOGIN <username> <password> | QUIT
-2026-07-22 15:32:39.993 SEND: REGISTER David pass
-2026-07-22 15:32:40.020 RECV: REGISTER_FAILED username taken or invalid | handlers: 0
-2026-07-22 15:32:40.020 > REGISTER_FAILED username taken or invalid
-2026-07-22 15:32:40.350 SEND: LOGIN David pass
-2026-07-22 15:32:40.359 RECV: LOGIN_SUCCESS David 1212 | handlers: 0
-2026-07-22 15:32:40.359 > LOGIN_SUCCESS David 1212
-2026-07-22 15:33:10.246 SEND: PLAY
-2026-07-22 15:33:13.013 RECV: JOINED_ROOM 1 WHITE | handlers: 1
-2026-07-22 15:33:13.013 DISPATCH to ui.HomeScreen
-2026-07-22 15:33:13.024 RECV: GAME_START 1 David Chaim | handlers: 1
-2026-07-22 15:33:13.024 DISPATCH to ui.HomeScreen
-2026-07-22 15:33:13.032 [HomeScreen] openGameWindow: roomId=1 color=WHITE
+2026-07-26 12:44:18.580 Connected to server
+2026-07-26 12:44:18.585 Welcome to Chess Server
+2026-07-26 12:44:18.585 Commands: REGISTER <username> <password> | LOGIN <username> <password> | QUIT
+2026-07-26 12:45:35.504 SEND: REGISTER David pass
+2026-07-26 12:45:35.509 RECV: REGISTER_FAILED username taken or invalid | handlers: 0
+2026-07-26 12:45:35.509 > REGISTER_FAILED username taken or invalid
+2026-07-26 12:45:36.089 SEND: LOGIN David pass
+2026-07-26 12:45:36.097 RECV: LOGIN_SUCCESS David 1227 | handlers: 0
+2026-07-26 12:45:36.097 > LOGIN_SUCCESS David 1227
+2026-07-26 12:45:37.709 SEND: PLAY
+2026-07-26 12:45:40.212 RECV: JOINED_ROOM 1 WHITE | handlers: 1
+2026-07-26 12:45:40.213 DISPATCH to ui.HomeScreen
+2026-07-26 12:45:40.226 RECV: GAME_START 1 David Chaim | handlers: 1
+2026-07-26 12:45:40.226 DISPATCH to ui.HomeScreen
+2026-07-26 12:45:40.239 [HomeScreen] openGameWindow: roomId=1 color=WHITE
+2026-07-26 12:46:47.419 RECV: MOVE 1 1 0 3 0 false | handlers: 2
+2026-07-26 12:46:47.419 DISPATCH to ui.HomeScreen
+2026-07-26 12:46:47.421 DISPATCH to engine.GameController
+2026-07-26 12:46:47.421 [GameController] handleMessage: MOVE 1 1 0 3 0 false
+2026-07-26 12:46:47.422 RECV: SOUND move | handlers: 2
+2026-07-26 12:46:47.422 DISPATCH to ui.HomeScreen
+2026-07-26 12:46:47.422 DISPATCH to engine.GameController
+2026-07-26 12:46:47.424 [GameController] handleMessage: SOUND move
+2026-07-26 12:46:47.436 [GameController] handleNetworkMessage: MOVE 1 1 0 3 0 false
+2026-07-26 12:46:47.438 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:46:47.438 [GameController] MOVE parsed: (1,0) -> (3,0)
+2026-07-26 12:46:47.935 [GameController] handleNetworkMessage: SOUND move
+2026-07-26 12:46:47.936 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:46:58.699 RECV: MOVE 1 3 0 4 0 false | handlers: 2
+2026-07-26 12:46:58.700 DISPATCH to ui.HomeScreen
+2026-07-26 12:46:58.700 DISPATCH to engine.GameController
+2026-07-26 12:46:58.701 [GameController] handleMessage: MOVE 1 3 0 4 0 false
+2026-07-26 12:46:58.701 RECV: SOUND move | handlers: 2
+2026-07-26 12:46:58.702 DISPATCH to ui.HomeScreen
+2026-07-26 12:46:58.703 DISPATCH to engine.GameController
+2026-07-26 12:46:58.704 [GameController] handleMessage: SOUND move
+2026-07-26 12:46:58.718 [GameController] handleNetworkMessage: MOVE 1 3 0 4 0 false
+2026-07-26 12:46:58.718 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:46:58.719 [GameController] MOVE parsed: (3,0) -> (4,0)
+2026-07-26 12:46:58.723 [GameController] handleNetworkMessage: SOUND move
+2026-07-26 12:46:58.724 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:47:00.695 RECV: MOVE 1 4 0 5 0 false | handlers: 2
+2026-07-26 12:47:00.695 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:00.696 DISPATCH to engine.GameController
+2026-07-26 12:47:00.696 [GameController] handleMessage: MOVE 1 4 0 5 0 false
+2026-07-26 12:47:00.696 RECV: SOUND move | handlers: 2
+2026-07-26 12:47:00.698 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:00.698 DISPATCH to engine.GameController
+2026-07-26 12:47:00.698 [GameController] handleMessage: SOUND move
+2026-07-26 12:47:00.706 [GameController] handleNetworkMessage: MOVE 1 4 0 5 0 false
+2026-07-26 12:47:00.707 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:47:00.707 [GameController] MOVE parsed: (4,0) -> (5,0)
+2026-07-26 12:47:00.713 [GameController] handleNetworkMessage: SOUND move
+2026-07-26 12:47:00.713 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:47:06.516 RECV: MOVE 1 5 0 6 1 true | handlers: 2
+2026-07-26 12:47:06.516 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:06.518 DISPATCH to engine.GameController
+2026-07-26 12:47:06.518 [GameController] handleMessage: MOVE 1 5 0 6 1 true
+2026-07-26 12:47:06.518 RECV: SOUND eat | handlers: 2
+2026-07-26 12:47:06.518 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:06.518 DISPATCH to engine.GameController
+2026-07-26 12:47:06.520 [GameController] handleMessage: SOUND eat
+2026-07-26 12:47:06.523 [GameController] handleNetworkMessage: MOVE 1 5 0 6 1 true
+2026-07-26 12:47:06.523 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:47:06.524 [GameController] MOVE parsed: (5,0) -> (6,1)
+2026-07-26 12:47:06.534 [GameController] handleNetworkMessage: SOUND eat
+2026-07-26 12:47:06.534 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:47:08.928 RECV: MOVE 1 6 1 7 0 true | handlers: 2
+2026-07-26 12:47:08.930 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:08.931 DISPATCH to engine.GameController
+2026-07-26 12:47:08.931 [GameController] handleMessage: MOVE 1 6 1 7 0 true
+2026-07-26 12:47:08.931 RECV: SOUND eat | handlers: 2
+2026-07-26 12:47:08.932 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:08.932 DISPATCH to engine.GameController
+2026-07-26 12:47:08.932 [GameController] handleMessage: SOUND eat
+2026-07-26 12:47:08.932 [GameController] handleNetworkMessage: MOVE 1 6 1 7 0 true
+2026-07-26 12:47:08.932 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:47:08.934 [GameController] MOVE parsed: (6,1) -> (7,0)
+2026-07-26 12:47:08.936 [GameController] handleNetworkMessage: SOUND eat
+2026-07-26 12:47:08.937 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:47:12.814 RECV: MOVE 1 7 0 7 1 true | handlers: 2
+2026-07-26 12:47:12.815 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:12.815 DISPATCH to engine.GameController
+2026-07-26 12:47:12.816 [GameController] handleMessage: MOVE 1 7 0 7 1 true
+2026-07-26 12:47:12.816 RECV: SOUND eat | handlers: 2
+2026-07-26 12:47:12.817 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:12.817 DISPATCH to engine.GameController
+2026-07-26 12:47:12.818 [GameController] handleMessage: SOUND eat
+2026-07-26 12:47:12.822 [GameController] handleNetworkMessage: MOVE 1 7 0 7 1 true
+2026-07-26 12:47:12.824 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:47:12.824 [GameController] MOVE parsed: (7,0) -> (7,1)
+2026-07-26 12:47:12.828 [GameController] handleNetworkMessage: SOUND eat
+2026-07-26 12:47:12.829 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:47:15.605 RECV: MOVE 1 7 1 6 0 true | handlers: 2
+2026-07-26 12:47:15.605 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:15.607 DISPATCH to engine.GameController
+2026-07-26 12:47:15.607 [GameController] handleMessage: MOVE 1 7 1 6 0 true
+2026-07-26 12:47:15.607 RECV: SOUND eat | handlers: 2
+2026-07-26 12:47:15.607 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:15.608 DISPATCH to engine.GameController
+2026-07-26 12:47:15.608 [GameController] handleMessage: SOUND eat
+2026-07-26 12:47:15.618 [GameController] handleNetworkMessage: MOVE 1 7 1 6 0 true
+2026-07-26 12:47:15.621 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:47:15.622 [GameController] MOVE parsed: (7,1) -> (6,0)
+2026-07-26 12:47:15.627 [GameController] handleNetworkMessage: SOUND eat
+2026-07-26 12:47:15.630 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:47:19.767 RECV: MOVE 1 6 0 4 2 false | handlers: 2
+2026-07-26 12:47:19.768 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:19.768 DISPATCH to engine.GameController
+2026-07-26 12:47:19.769 [GameController] handleMessage: MOVE 1 6 0 4 2 false
+2026-07-26 12:47:19.770 RECV: SOUND move | handlers: 2
+2026-07-26 12:47:19.770 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:19.771 DISPATCH to engine.GameController
+2026-07-26 12:47:19.771 [GameController] handleMessage: SOUND move
+2026-07-26 12:47:19.783 [GameController] handleNetworkMessage: MOVE 1 6 0 4 2 false
+2026-07-26 12:47:19.783 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:47:19.784 [GameController] MOVE parsed: (6,0) -> (4,2)
+2026-07-26 12:47:19.787 [GameController] handleNetworkMessage: SOUND move
+2026-07-26 12:47:19.788 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:47:23.887 RECV: MOVE 1 4 2 6 2 true | handlers: 2
+2026-07-26 12:47:23.888 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:23.888 DISPATCH to engine.GameController
+2026-07-26 12:47:23.888 [GameController] handleMessage: MOVE 1 4 2 6 2 true
+2026-07-26 12:47:23.889 RECV: SOUND eat | handlers: 2
+2026-07-26 12:47:23.890 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:23.890 DISPATCH to engine.GameController
+2026-07-26 12:47:23.891 [GameController] handleMessage: SOUND eat
+2026-07-26 12:47:23.902 [GameController] handleNetworkMessage: MOVE 1 4 2 6 2 true
+2026-07-26 12:47:23.903 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:47:23.904 [GameController] MOVE parsed: (4,2) -> (6,2)
+2026-07-26 12:47:23.907 [GameController] handleNetworkMessage: SOUND eat
+2026-07-26 12:47:23.907 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:47:36.128 RECV: MOVE 1 6 2 6 3 true | handlers: 2
+2026-07-26 12:47:36.129 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:36.130 DISPATCH to engine.GameController
+2026-07-26 12:47:36.130 [GameController] handleMessage: MOVE 1 6 2 6 3 true
+2026-07-26 12:47:36.130 RECV: SOUND eat | handlers: 2
+2026-07-26 12:47:36.130 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:36.130 DISPATCH to engine.GameController
+2026-07-26 12:47:36.131 [GameController] handleMessage: SOUND eat
+2026-07-26 12:47:36.134 [GameController] handleNetworkMessage: MOVE 1 6 2 6 3 true
+2026-07-26 12:47:36.135 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:47:36.135 [GameController] MOVE parsed: (6,2) -> (6,3)
+2026-07-26 12:47:36.139 [GameController] handleNetworkMessage: SOUND eat
+2026-07-26 12:47:36.139 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:47:39.844 RECV: MOVE 1 6 3 4 5 false | handlers: 2
+2026-07-26 12:47:39.844 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:39.844 DISPATCH to engine.GameController
+2026-07-26 12:47:39.845 [GameController] handleMessage: MOVE 1 6 3 4 5 false
+2026-07-26 12:47:39.845 RECV: SOUND move | handlers: 2
+2026-07-26 12:47:39.847 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:39.847 DISPATCH to engine.GameController
+2026-07-26 12:47:39.847 [GameController] handleMessage: SOUND move
+2026-07-26 12:47:39.849 [GameController] handleNetworkMessage: MOVE 1 6 3 4 5 false
+2026-07-26 12:47:39.849 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:47:39.849 [GameController] MOVE parsed: (6,3) -> (4,5)
+2026-07-26 12:47:39.854 [GameController] handleNetworkMessage: SOUND move
+2026-07-26 12:47:39.855 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:47:47.119 RECV: MOVE 1 4 5 5 5 false | handlers: 2
+2026-07-26 12:47:47.121 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:47.121 DISPATCH to engine.GameController
+2026-07-26 12:47:47.121 [GameController] handleMessage: MOVE 1 4 5 5 5 false
+2026-07-26 12:47:47.122 RECV: SOUND move | handlers: 2
+2026-07-26 12:47:47.122 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:47.122 DISPATCH to engine.GameController
+2026-07-26 12:47:47.123 [GameController] handleMessage: SOUND move
+2026-07-26 12:47:47.141 [GameController] handleNetworkMessage: MOVE 1 4 5 5 5 false
+2026-07-26 12:47:47.142 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:47:47.142 [GameController] MOVE parsed: (4,5) -> (5,5)
+2026-07-26 12:47:47.150 [GameController] handleNetworkMessage: SOUND move
+2026-07-26 12:47:47.151 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:47:53.552 RECV: MOVE 1 5 5 6 4 true | handlers: 2
+2026-07-26 12:47:53.553 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:53.554 DISPATCH to engine.GameController
+2026-07-26 12:47:53.554 [GameController] handleMessage: MOVE 1 5 5 6 4 true
+2026-07-26 12:47:53.554 RECV: SOUND eat | handlers: 2
+2026-07-26 12:47:53.555 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:53.555 DISPATCH to engine.GameController
+2026-07-26 12:47:53.556 [GameController] handleMessage: SOUND eat
+2026-07-26 12:47:53.568 [GameController] handleNetworkMessage: MOVE 1 5 5 6 4 true
+2026-07-26 12:47:53.568 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:47:53.568 [GameController] MOVE parsed: (5,5) -> (6,4)
+2026-07-26 12:47:53.572 [GameController] handleNetworkMessage: SOUND eat
+2026-07-26 12:47:53.572 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:47:56.074 RECV: MOVE 1 6 4 6 5 true | handlers: 2
+2026-07-26 12:47:56.075 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:56.075 DISPATCH to engine.GameController
+2026-07-26 12:47:56.075 [GameController] handleMessage: MOVE 1 6 4 6 5 true
+2026-07-26 12:47:56.075 RECV: SOUND eat | handlers: 2
+2026-07-26 12:47:56.076 DISPATCH to ui.HomeScreen
+2026-07-26 12:47:56.076 DISPATCH to engine.GameController
+2026-07-26 12:47:56.076 [GameController] handleMessage: SOUND eat
+2026-07-26 12:47:56.095 [GameController] handleNetworkMessage: MOVE 1 6 4 6 5 true
+2026-07-26 12:47:56.096 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:47:56.096 [GameController] MOVE parsed: (6,4) -> (6,5)
+2026-07-26 12:47:56.101 [GameController] handleNetworkMessage: SOUND eat
+2026-07-26 12:47:56.101 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:48:00.376 RECV: MOVE 1 6 5 7 6 true | handlers: 2
+2026-07-26 12:48:00.377 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:00.384 DISPATCH to engine.GameController
+2026-07-26 12:48:00.384 [GameController] handleMessage: MOVE 1 6 5 7 6 true
+2026-07-26 12:48:00.384 RECV: SOUND eat | handlers: 2
+2026-07-26 12:48:00.385 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:00.385 DISPATCH to engine.GameController
+2026-07-26 12:48:00.385 [GameController] handleMessage: SOUND eat
+2026-07-26 12:48:00.401 [GameController] handleNetworkMessage: MOVE 1 6 5 7 6 true
+2026-07-26 12:48:00.401 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:48:00.402 [GameController] MOVE parsed: (6,5) -> (7,6)
+2026-07-26 12:48:00.406 [GameController] handleNetworkMessage: SOUND eat
+2026-07-26 12:48:00.406 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:48:02.731 RECV: MOVE 1 7 6 7 7 true | handlers: 2
+2026-07-26 12:48:02.732 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:02.732 DISPATCH to engine.GameController
+2026-07-26 12:48:02.732 [GameController] handleMessage: MOVE 1 7 6 7 7 true
+2026-07-26 12:48:02.733 RECV: SOUND eat | handlers: 2
+2026-07-26 12:48:02.733 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:02.734 DISPATCH to engine.GameController
+2026-07-26 12:48:02.734 [GameController] handleMessage: SOUND eat
+2026-07-26 12:48:02.747 [GameController] handleNetworkMessage: MOVE 1 7 6 7 7 true
+2026-07-26 12:48:02.747 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:48:02.747 [GameController] MOVE parsed: (7,6) -> (7,7)
+2026-07-26 12:48:02.751 [GameController] handleNetworkMessage: SOUND eat
+2026-07-26 12:48:02.752 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:48:04.941 RECV: MOVE 1 7 7 6 7 true | handlers: 2
+2026-07-26 12:48:04.942 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:04.942 DISPATCH to engine.GameController
+2026-07-26 12:48:04.942 [GameController] handleMessage: MOVE 1 7 7 6 7 true
+2026-07-26 12:48:04.942 RECV: SOUND eat | handlers: 2
+2026-07-26 12:48:04.944 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:04.944 DISPATCH to engine.GameController
+2026-07-26 12:48:04.944 [GameController] handleMessage: SOUND eat
+2026-07-26 12:48:04.956 [GameController] handleNetworkMessage: MOVE 1 7 7 6 7 true
+2026-07-26 12:48:04.957 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:48:04.957 [GameController] MOVE parsed: (7,7) -> (6,7)
+2026-07-26 12:48:04.961 [GameController] handleNetworkMessage: SOUND eat
+2026-07-26 12:48:04.961 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:48:06.890 RECV: MOVE 1 6 7 6 6 true | handlers: 2
+2026-07-26 12:48:06.891 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:06.895 DISPATCH to engine.GameController
+2026-07-26 12:48:06.895 [GameController] handleMessage: MOVE 1 6 7 6 6 true
+2026-07-26 12:48:06.895 RECV: SOUND eat | handlers: 2
+2026-07-26 12:48:06.895 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:06.895 DISPATCH to engine.GameController
+2026-07-26 12:48:06.895 [GameController] handleMessage: SOUND eat
+2026-07-26 12:48:06.913 [GameController] handleNetworkMessage: MOVE 1 6 7 6 6 true
+2026-07-26 12:48:06.913 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:48:06.913 [GameController] MOVE parsed: (6,7) -> (6,6)
+2026-07-26 12:48:06.916 [GameController] handleNetworkMessage: SOUND eat
+2026-07-26 12:48:06.917 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:48:10.666 RECV: MOVE 1 6 6 7 5 true | handlers: 2
+2026-07-26 12:48:10.668 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:10.669 DISPATCH to engine.GameController
+2026-07-26 12:48:10.669 [GameController] handleMessage: MOVE 1 6 6 7 5 true
+2026-07-26 12:48:10.669 RECV: SOUND eat | handlers: 2
+2026-07-26 12:48:10.669 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:10.669 DISPATCH to engine.GameController
+2026-07-26 12:48:10.670 [GameController] handleMessage: SOUND eat
+2026-07-26 12:48:10.674 [GameController] handleNetworkMessage: MOVE 1 6 6 7 5 true
+2026-07-26 12:48:10.674 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:48:10.674 [GameController] MOVE parsed: (6,6) -> (7,5)
+2026-07-26 12:48:10.677 [GameController] handleNetworkMessage: SOUND eat
+2026-07-26 12:48:10.677 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:48:14.401 RECV: MOVE 1 7 5 2 5 false | handlers: 2
+2026-07-26 12:48:14.401 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:14.402 DISPATCH to engine.GameController
+2026-07-26 12:48:14.402 [GameController] handleMessage: MOVE 1 7 5 2 5 false
+2026-07-26 12:48:14.403 RECV: SOUND move | handlers: 2
+2026-07-26 12:48:14.404 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:14.404 DISPATCH to engine.GameController
+2026-07-26 12:48:14.404 [GameController] handleMessage: SOUND move
+2026-07-26 12:48:14.406 [GameController] handleNetworkMessage: MOVE 1 7 5 2 5 false
+2026-07-26 12:48:14.407 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:48:14.407 [GameController] MOVE parsed: (7,5) -> (2,5)
+2026-07-26 12:48:14.412 [GameController] handleNetworkMessage: SOUND move
+2026-07-26 12:48:14.413 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:48:23.873 RECV: MOVE 1 2 5 7 0 false | handlers: 2
+2026-07-26 12:48:23.873 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:23.873 DISPATCH to engine.GameController
+2026-07-26 12:48:23.873 [GameController] handleMessage: MOVE 1 2 5 7 0 false
+2026-07-26 12:48:23.875 RECV: SOUND move | handlers: 2
+2026-07-26 12:48:23.875 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:23.875 DISPATCH to engine.GameController
+2026-07-26 12:48:23.875 [GameController] handleMessage: SOUND move
+2026-07-26 12:48:23.881 [GameController] handleNetworkMessage: MOVE 1 2 5 7 0 false
+2026-07-26 12:48:23.882 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:48:23.882 [GameController] MOVE parsed: (2,5) -> (7,0)
+2026-07-26 12:48:23.887 [GameController] handleNetworkMessage: SOUND move
+2026-07-26 12:48:23.887 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:48:30.870 RECV: MOVE 1 7 0 7 2 true | handlers: 2
+2026-07-26 12:48:30.871 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:30.871 DISPATCH to engine.GameController
+2026-07-26 12:48:30.872 [GameController] handleMessage: MOVE 1 7 0 7 2 true
+2026-07-26 12:48:30.872 RECV: SOUND eat | handlers: 2
+2026-07-26 12:48:30.873 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:30.874 DISPATCH to engine.GameController
+2026-07-26 12:48:30.874 [GameController] handleMessage: SOUND eat
+2026-07-26 12:48:30.891 [GameController] handleNetworkMessage: MOVE 1 7 0 7 2 true
+2026-07-26 12:48:30.891 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:48:30.891 [GameController] MOVE parsed: (7,0) -> (7,2)
+2026-07-26 12:48:30.895 [GameController] handleNetworkMessage: SOUND eat
+2026-07-26 12:48:30.896 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:48:34.791 RECV: MOVE 1 7 2 6 3 false | handlers: 2
+2026-07-26 12:48:34.794 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:34.794 DISPATCH to engine.GameController
+2026-07-26 12:48:34.794 [GameController] handleMessage: MOVE 1 7 2 6 3 false
+2026-07-26 12:48:34.794 RECV: SOUND move | handlers: 2
+2026-07-26 12:48:34.794 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:34.795 DISPATCH to engine.GameController
+2026-07-26 12:48:34.795 [GameController] handleMessage: SOUND move
+2026-07-26 12:48:34.796 [GameController] handleNetworkMessage: MOVE 1 7 2 6 3 false
+2026-07-26 12:48:34.796 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:48:34.796 [GameController] MOVE parsed: (7,2) -> (6,3)
+2026-07-26 12:48:34.801 [GameController] handleNetworkMessage: SOUND move
+2026-07-26 12:48:34.802 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:48:38.738 RECV: MOVE 1 6 3 5 4 false | handlers: 2
+2026-07-26 12:48:38.738 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:38.739 DISPATCH to engine.GameController
+2026-07-26 12:48:38.739 [GameController] handleMessage: MOVE 1 6 3 5 4 false
+2026-07-26 12:48:38.740 RECV: SOUND move | handlers: 2
+2026-07-26 12:48:38.741 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:38.741 DISPATCH to engine.GameController
+2026-07-26 12:48:38.741 [GameController] handleMessage: SOUND move
+2026-07-26 12:48:38.765 [GameController] handleNetworkMessage: MOVE 1 6 3 5 4 false
+2026-07-26 12:48:38.766 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:48:38.766 [GameController] MOVE parsed: (6,3) -> (5,4)
+2026-07-26 12:48:38.770 [GameController] handleNetworkMessage: SOUND move
+2026-07-26 12:48:38.771 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:48:45.233 RECV: MOVE 1 5 4 7 4 true | handlers: 2
+2026-07-26 12:48:45.233 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:45.234 DISPATCH to engine.GameController
+2026-07-26 12:48:45.234 [GameController] handleMessage: MOVE 1 5 4 7 4 true
+2026-07-26 12:48:45.235 RECV: SOUND eat | handlers: 2
+2026-07-26 12:48:45.235 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:45.235 DISPATCH to engine.GameController
+2026-07-26 12:48:45.235 [GameController] handleMessage: SOUND eat
+2026-07-26 12:48:45.237 [GameController] handleNetworkMessage: MOVE 1 5 4 7 4 true
+2026-07-26 12:48:45.237 [GameController] message type: MOVE parts.length: 7
+2026-07-26 12:48:45.238 [GameController] MOVE parsed: (5,4) -> (7,4)
+2026-07-26 12:48:45.242 [GameController] handleNetworkMessage: SOUND eat
+2026-07-26 12:48:45.244 [GameController] message type: SOUND parts.length: 2
+2026-07-26 12:48:46.620 RECV: GAME_OVER BLACK | handlers: 2
+2026-07-26 12:48:46.621 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:46.622 DISPATCH to engine.GameController
+2026-07-26 12:48:46.622 [GameController] handleMessage: GAME_OVER BLACK
+2026-07-26 12:48:46.623 RECV: ELO_UPDATE David 1209 | handlers: 2
+2026-07-26 12:48:46.624 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:46.624 DISPATCH to engine.GameController
+2026-07-26 12:48:46.624 [GameController] handleMessage: ELO_UPDATE David 1209
+2026-07-26 12:48:46.624 RECV: ELO_UPDATE Chaim 1191 | handlers: 2
+2026-07-26 12:48:46.625 DISPATCH to ui.HomeScreen
+2026-07-26 12:48:46.625 DISPATCH to engine.GameController
+2026-07-26 12:48:46.625 [GameController] handleMessage: ELO_UPDATE Chaim 1191
+2026-07-26 12:48:46.712 [GameController] handleNetworkMessage: GAME_OVER BLACK
+2026-07-26 12:48:46.713 [GameController] message type: GAME_OVER parts.length: 2
+2026-07-26 12:48:46.716 [GameController] handleNetworkMessage: ELO_UPDATE David 1209
+2026-07-26 12:48:46.716 [GameController] message type: ELO_UPDATE parts.length: 3
+2026-07-26 12:48:46.717 [GameController] handleNetworkMessage: ELO_UPDATE Chaim 1191
+2026-07-26 12:48:46.717 [GameController] message type: ELO_UPDATE parts.length: 3
+2026-07-26 12:49:16.811 Disconnected from server: 

@@ -14,7 +14,7 @@ public class RealTimeManager {
     }
 
     private long gameClock = 0;
-    
+
     public boolean hasPendingMoves() {
         for (MoveEvent e : eventQueue) {
             if (gameClock < e.getArrivalTime()) {
@@ -32,7 +32,7 @@ public class RealTimeManager {
         updateRestStates(board, engine);
 
         long currentTime = gameClock;
-        
+
         for (int i = 0; i < eventQueue.size(); i++) {
             MoveEvent event = eventQueue.get(i);
             if (currentTime >= event.getArrivalTime() && !event.isJump()) {
@@ -62,7 +62,7 @@ public class RealTimeManager {
                     board.updatePiece(event.getTo(), event.getPiece());
                     if (event.getPiece() != null) event.getPiece().setHasMoved(true);
                     engine.postMoveActions(event.getTo());
-                    
+
                     // הוספה להיסטוריית מהלכים
                     engine.getMoveHistory().addMove(
                         event.getPiece().getType(),
@@ -71,7 +71,7 @@ public class RealTimeManager {
                         event.getTo(),
                         event.getArrivalTime()
                     );
-                    
+
                     // State machine: עבור ל-state הבא אחרי המהלך
                     transitionPieceState(event.getPiece(), "move", engine);
                 }
@@ -95,8 +95,9 @@ public class RealTimeManager {
                 }
                 board.updatePiece(event.getFrom(), null);
                 board.updatePiece(event.getTo(), event.getPiece());
-                if (event.getPiece() != null) event.getPiece().setHasMoved(true);
-                
+                // קפיצה במקום היא פעולה בזמן אמת ולא צורכת תור - לא מסמנים hasMoved
+                // כדי לא לפגוע בהרשאת המהלך הראשון של חיילים
+
                 // הוספה להיסטוריית מהלכים
                 engine.getMoveHistory().addMove(
                     event.getPiece().getType(),
@@ -105,10 +106,10 @@ public class RealTimeManager {
                     event.getTo(),
                     event.getArrivalTime()
                 );
-                
+
                 // State machine: עבור ל-state הבא אחרי הקפיצה
                 transitionPieceState(event.getPiece(), "jump", engine);
-                
+
                 eventQueue.remove(i);
                 i--;
                 engine.checkGameOver(board);
@@ -132,24 +133,24 @@ public class RealTimeManager {
 
     private void transitionPieceState(Piece piece, String currentStateName, GameEngine engine) {
         if (piece == null) return;
-        
+
         String pieceKey = Character.toLowerCase(piece.getColor()) + "" + piece.getType();
         StateConfig config = engine.getConfigLoader().getConfig(pieceKey, currentStateName);
-        
+
         if (config == null) {
             // אם אין config, חזור ל-IDLE
             piece.setCurrentState(Piece.State.IDLE);
             piece.setStateStartTime(gameClock);
             return;
         }
-        
+
         String nextStateName = config.nextStateWhenFinished();
         if (nextStateName == null) {
             piece.setCurrentState(Piece.State.IDLE);
             piece.setStateStartTime(gameClock);
             return;
         }
-        
+
         // המר את שם ה-state ל-enum
         switch (nextStateName.toLowerCase()) {
             case "idle":
@@ -172,16 +173,16 @@ public class RealTimeManager {
             for (int c = 0; c < 8; c++) {
                 Piece piece = board.getPieceAt(new Position(r, c));
                 if (piece == null) continue;
-                
+
                 // בדוק אם הכלי ב-rest state
-                if (piece.getCurrentState() == Piece.State.SHORT_REST || 
+                if (piece.getCurrentState() == Piece.State.SHORT_REST ||
                     piece.getCurrentState() == Piece.State.LONG_REST) {
-                    
-                    String stateName = piece.getCurrentState() == Piece.State.SHORT_REST ? 
+
+                    String stateName = piece.getCurrentState() == Piece.State.SHORT_REST ?
                                       "short_rest" : "long_rest";
                     String pieceKey = Character.toLowerCase(piece.getColor()) + "" + piece.getType();
                     StateConfig config = engine.getConfigLoader().getConfig(pieceKey, stateName);
-                    
+
                     if (config != null && !config.isLoop()) {
                         // אם ה-state לא מתחלף והזמן עבר, עבור ל-state הבא
                         long elapsed = piece.getStateElapsedMillis(gameClock);
