@@ -43,11 +43,7 @@ public class GameWindow extends JPanel {
         imageLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent event) {
-                if (event.getClickCount() == 2) {
-                    controller.doubleClick(event.getX(), event.getY());
-                } else if (event.getClickCount() == 1) {
-                    controller.click(event.getX(), event.getY());
-                }
+                controller.click(event.getX(), event.getY());
             }
         });
 

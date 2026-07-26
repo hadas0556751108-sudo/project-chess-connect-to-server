@@ -91,10 +91,20 @@ public class GameEngine {
         StateConfig config = configLoader.getConfig(pieceKey, "jump");
         double speedMetersPerSec = (config != null) ? config.speedMetersPerSec() : 0.3;
         
-        // קפיצה היא במקום, אז המרחק הוא 0, אבל נשתמש במרחק קטן כדי שה-duration לא יהיה 0
-        double distanceMeters = 0.5; // חצי מטר לקפיצה במקום
-        double durationSec = distanceMeters / speedMetersPerSec;
-        long duration = (long) (durationSec * 1000);
+        // קפיצה היא במקום, אז אם המהירות 0 נסתמך על אורך האנימציה
+        long duration;
+        if (speedMetersPerSec > 0) {
+            double distanceMeters = 0.5; // חצי מטר לקפיצה במקום
+            double durationSec = distanceMeters / speedMetersPerSec;
+            duration = (long) (durationSec * 1000);
+        } else {
+            // speed 0 פירושו שאין תזוזה פיזית – משך הפעולה הוא אורך רצף התמונות
+            if (config != null && config.frameCount() > 0 && config.framesPerSec() > 0) {
+                duration = (long) (config.frameCount() * 1000.0 / config.framesPerSec());
+            } else {
+                duration = 500; // ברירת מחדל חצי שנייה
+            }
+        }
         
         // שנה את state של הכלי ל-JUMPING
         p.setCurrentState(Piece.State.JUMPING);
@@ -251,26 +261,15 @@ public class GameEngine {
                         long currentTime = timeManager.getCurrentTime();
                         long arrivalTime = activeEvent.getArrivalTime();
                         
-                        // חשב duration מה-config
-                        String pieceKey = Character.toLowerCase(piece.getColor()) + "" + piece.getType();
-                        String stateName = activeEvent.isJump() ? "jump" : "move";
-                        StateConfig config = configLoader.getConfig(pieceKey, stateName);
-                        double speedMetersPerSec = (config != null) ? config.speedMetersPerSec() : 0.3;
-                        
-                        // חשב מרחק במטרים
+                        // השתמש בזמני האירוע השמורים במקום לחשב מחדש מה-config.
+                        // זה מונע חלוקה באפס בקפיצות (from == to, speed_m_per_sec == 0).
                         Position from = activeEvent.getFrom();
                         Position to = activeEvent.getTo();
-                        double distanceCells = Math.sqrt(
-                                Math.pow(to.getCol() - from.getCol(), 2) +
-                                Math.pow(to.getRow() - from.getRow(), 2)
-                        );
-                        double distanceMeters = distanceCells * 1.0; // נניח שתא אחד = 1 מטר
-                        
-                        // חשב duration במילישניות
-                        double durationSec = distanceMeters / speedMetersPerSec;
-                        long duration = (long) (durationSec * 1000);
-                        
-                        long startTime = arrivalTime - duration;
+                        long startTime = piece.getStateStartTime();
+                        long duration = arrivalTime - startTime;
+                        if (duration <= 0) {
+                            duration = 1; // בטיחות מפני חלוקה באפס
+                        }
                         long elapsed = currentTime - startTime;
                         double progress = Math.min(1.0, (double) elapsed / duration);
                         

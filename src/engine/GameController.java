@@ -19,6 +19,9 @@ public class GameController implements GameEventListener, MessageHandler {
     private final boolean networkMode;
     private final Consumer<String> gameOverCallback;
     private volatile boolean gameOverHandled;
+    private Position lastClickPos;
+    private long lastClickTime;
+    private static final long DOUBLE_CLICK_INTERVAL_MS = 300;
 
     public GameController(GameEngine engine, BoardMapper boardMapper) {
         this(engine, boardMapper, null, null, null);
@@ -40,20 +43,46 @@ public class GameController implements GameEventListener, MessageHandler {
 
     public void click(int pixelX, int pixelY) {
         Position pos = boardMapper.pixelsToPosition(pixelX, pixelY);
-        if (pos != null) {
-            Piece clicked = gameEngine.getBoard().getPieceAt(pos);
-            if (clicked != null && clicked.getColor() == getPlayerColorChar()) {
-                SoundPlayer.play("click");
-            }
-            gameEngine.processClick(pos);
+        if (pos == null) return;
+
+        long now = System.currentTimeMillis();
+        if (lastClickPos != null && lastClickPos.equals(pos)
+                && (now - lastClickTime) <= DOUBLE_CLICK_INTERVAL_MS) {
+            lastClickPos = null;
+            lastClickTime = 0;
+            performJump(pos);
+            return;
         }
+
+        Piece clicked = gameEngine.getBoard().getPieceAt(pos);
+        if (clicked != null && clicked.getColor() == getPlayerColorChar()) {
+            SoundPlayer.play("click");
+        }
+        gameEngine.processClick(pos);
+        lastClickPos = pos;
+        lastClickTime = now;
     }
 
     public void doubleClick(int pixelX, int pixelY) {
         Position pos = boardMapper.pixelsToPosition(pixelX, pixelY);
         if (pos != null) {
-            gameEngine.processJump(pos);
+            performJump(pos);
         }
+    }
+
+    private void performJump(Position pos) {
+        Piece piece = gameEngine.getBoard().getPieceAt(pos);
+        if (piece == null) return;
+
+        // במצב רשת קפיצה תתאפשר רק על כלי השחקן המקומי, כדי למנוע בעיות סנכרון
+        if (networkMode) {
+            char playerColor = getPlayerColorChar();
+            if (playerColor == 0 || piece.getColor() != playerColor) {
+                return;
+            }
+        }
+
+        gameEngine.processJump(pos);
     }
 
     public void handleInput(String command) {

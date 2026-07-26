@@ -63,7 +63,7 @@ public class PieceImageLoader {
     private int calculateFrameIndex(long elapsedMillis, int frameCount,
                                     char type, char color, PieceVisualState state) {
         String pieceKey = Character.toLowerCase(color) + "" + type;
-        String stateName = state.toString().toLowerCase();
+        String stateName = visualStateName(state);
         
         StateConfig config = configLoader.getConfig(pieceKey, stateName);
         int framesPerSec = (config != null) ? config.framesPerSec() : 6; // ברירת מחדל 6 fps
@@ -92,12 +92,19 @@ public class PieceImageLoader {
         return Character.toLowerCase(color) + "" + type;
     }
 
-    private String stateFolder(PieceVisualState state) {
-        return state.toString().toLowerCase();
+    private String visualStateName(PieceVisualState state) {
+        switch (state) {
+            case MOVING: return "move";
+            case JUMPING: return "jump";
+            case IDLE: return "idle";
+            case SHORT_REST: return "short_rest";
+            case LONG_REST: return "long_rest";
+            default: return state.toString().toLowerCase();
+        }
     }
 
     private void loadAnimation(char type, char color, PieceVisualState state) {
-        String path = rootPath + "/" + pieceFolder(type, color) + "/states/" + stateFolder(state) + "/sprites";
+        String path = rootPath + "/" + pieceFolder(type, color) + "/states/" + visualStateName(state) + "/sprites";
 
         List<Img> loadedFrames = new ArrayList<>();
 
