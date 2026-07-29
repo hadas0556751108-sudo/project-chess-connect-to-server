@@ -1,0 +1,24 @@
+# Build stage: resolve Maven dependencies and compile auth service
+FROM maven:3.9-eclipse-temurin-21 AS build
+WORKDIR /app
+
+COPY pom.xml .
+RUN mvn -B -Dmaven.compiler.skip=true -Dmaven.test.skip=true dependency:copy-dependencies -DoutputDirectory=lib
+
+COPY src ./src
+RUN javac -encoding UTF-8 -cp "lib/*" -sourcepath src -d classes src/auth/AuthServiceMain.java
+
+# Runtime stage
+FROM eclipse-temurin:21-jre
+WORKDIR /app
+
+COPY --from=build /app/classes ./classes
+COPY --from=build /app/lib ./lib
+
+EXPOSE 8081
+
+ENV MONGO_URI="mongodb://mongodb:27017/chess"
+ENV JWT_SECRET="dev-secret-do-not-use-in-production"
+ENV AUTH_PORT="8081"
+
+ENTRYPOINT ["java", "-cp", "classes:lib/*", "auth.AuthServiceMain"]

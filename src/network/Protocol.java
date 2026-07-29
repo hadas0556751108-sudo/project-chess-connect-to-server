@@ -28,6 +28,8 @@ public final class Protocol {
     public static final String GAME_OVER = "GAME_OVER";
     public static final String ELO_UPDATE = "ELO_UPDATE";
     public static final String SOUND = "SOUND";
+    public static final String CHECK = "CHECK";
+    public static final String PROMOTION = "PROMOTION";
     public static final String DRAW = "DRAW";
     public static final String OPPONENT_DISCONNECTED = "OPPONENT_DISCONNECTED";
     public static final String OPPONENT_RECONNECTED = "OPPONENT_RECONNECTED";

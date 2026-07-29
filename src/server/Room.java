@@ -14,6 +14,7 @@ public class Room {
     private String currentColor = "WHITE";
     private boolean gameStarted = false;
     private boolean gameOver = false;
+    private GameState gameState;
 
     public Room(int id, String name, String creator) {
         this.id = id;
@@ -85,7 +86,7 @@ public class Room {
     }
 
     public synchronized void removeUser(String username) {
-        if (whitePlayer != null && whitePlayer.equals(username) && !creator.equals(username)) {
+        if (whitePlayer != null && whitePlayer.equals(username)) {
             whitePlayer = null;
         }
         if (blackPlayer != null && blackPlayer.equals(username)) {
@@ -131,10 +132,21 @@ public class Room {
         return gameOver;
     }
 
+    public synchronized GameState getGameState() {
+        return gameState;
+    }
+
     public synchronized void endGame() {
+        endGame(null);
+    }
+
+    public synchronized void endGame(String winner) {
         gameStarted = false;
         gameOver = true;
         currentColor = "WHITE";
+        if (gameState != null) {
+            gameState.endGame(winner);
+        }
     }
 
     public synchronized String getCurrentColor() {
@@ -178,9 +190,10 @@ public class Room {
     }
 
     private void startIfReady() {
-        if (whitePlayer != null && blackPlayer != null) {
+        if (!gameOver && whitePlayer != null && blackPlayer != null && !gameStarted) {
             gameStarted = true;
             currentColor = "WHITE";
+            gameState = new GameState();
         }
     }
 }

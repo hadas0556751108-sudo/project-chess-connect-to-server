@@ -1,11 +1,14 @@
 package server;
 
 import auth.AuthManager;
+import model.Position;
 import model.User;
+import network.MatchmakingClient;
 import network.Protocol;
 import org.java_websocket.WebSocket;
+import redis.RedisClient;
+import redis.clients.jedis.JedisPubSub;
 
-import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -17,15 +20,30 @@ public class CommandRouter {
     private final EventBus eventBus;
     private final MatchmakingManager matchmakingManager;
     private final DisconnectionManager disconnectionManager;
+    private final RedisClient redisClient;
+    private final MatchmakingClient matchmakingClient;
+    private final String gameServerId;
 
     public CommandRouter(AuthManager authManager) {
+        this(authManager, null, null, null);
+    }
+
+    public CommandRouter(AuthManager authManager, RedisClient redisClient, MatchmakingClient matchmakingClient, String gameServerId) {
         this.authManager = authManager;
         this.sessionManager = new SessionManager();
         this.roomManager = new RoomManager();
         this.eloManager = new EloManager(authManager);
         this.eventBus = new EventBus();
         initEventBus();
-        this.matchmakingManager = new MatchmakingManager(this);
+        this.redisClient = redisClient;
+        this.matchmakingClient = matchmakingClient;
+        this.gameServerId = gameServerId;
+        if (matchmakingClient != null && redisClient != null && gameServerId != null) {
+            this.matchmakingManager = null;
+            startRedisSubscriber();
+        } else {
+            this.matchmakingManager = new MatchmakingManager(this);
+        }
         this.disconnectionManager = new DisconnectionManager(this);
     }
 
@@ -66,8 +84,6 @@ public class CommandRouter {
                 default:
                     return Protocol.UNKNOWN_COMMAND + " " + command;
             }
-        } catch (SQLException e) {
-            return Protocol.ERROR + " database error: " + e.getMessage();
         } catch (Exception e) {
             return Protocol.ERROR + " " + e.getClass().getSimpleName() + ": " + e.getMessage();
         }
@@ -123,11 +139,7 @@ public class CommandRouter {
             return;
         }
         String winner = "WHITE".equals(color) ? "BLACK" : "WHITE";
-        try {
-            endGame(roomId, winner, "disconnect");
-        } catch (SQLException e) {
-            broadcastToRoom(roomId, Protocol.ERROR + " database error");
-        }
+        endGame(roomId, winner, "disconnect");
         sessionManager.removeDisconnected(username);
         if (room.isEmpty()) {
             roomManager.removeRoom(roomId);
@@ -169,7 +181,45 @@ public class CommandRouter {
         });
     }
 
-    private String handleRegister(String[] parts) throws SQLException {
+    private void startRedisSubscriber() {
+        JedisPubSub listener = new JedisPubSub() {
+            @Override
+            public void onMessage(String channel, String message) {
+                if (channel.equals("match:found:" + gameServerId)) {
+                    onMatchFound(message);
+                } else if (channel.equals("match:timeout:" + gameServerId)) {
+                    onMatchTimeout(message);
+                }
+            }
+        };
+        new Thread(() -> {
+            try {
+                redisClient.subscribe(new String[]{"match:found:" + gameServerId, "match:timeout:" + gameServerId}, listener);
+            } catch (Exception e) {
+                System.err.println("[CommandRouter] Redis subscriber error: " + e.getMessage());
+            }
+        }).start();
+    }
+
+    private void onMatchFound(String message) {
+        String[] parts = message.split(" ");
+        if (parts.length == 2) {
+            startMatch(parts[0], parts[1]);
+        }
+    }
+
+    private void onMatchTimeout(String username) {
+        sendNoMatch(username);
+    }
+
+    private void sendNoMatch(String username) {
+        Session session = sessionManager.getSession(username);
+        if (session != null && !session.isInRoom()) {
+            send(session.getConnection(), Protocol.NO_MATCH);
+        }
+    }
+
+    private String handleRegister(String[] parts) {
         if (parts.length != 3) {
             return Protocol.REGISTER_FAILED + " usage: REGISTER <username> <password>";
         }
@@ -181,7 +231,7 @@ public class CommandRouter {
         return Protocol.REGISTER_FAILED + " username taken or invalid";
     }
 
-    private String handleLogin(WebSocket connection, String[] parts) throws SQLException {
+    private String handleLogin(WebSocket connection, String[] parts) {
         if (parts.length != 3) {
             return Protocol.LOGIN_FAILED + " usage: LOGIN <username> <password>";
         }
@@ -207,7 +257,8 @@ public class CommandRouter {
                     }
                 }
             }
-            return Protocol.LOGIN_SUCCESS + " " + username + " " + user.getElo();
+            String token = authManager.generateToken(user);
+            return Protocol.LOGIN_SUCCESS + " " + username + " " + user.getElo() + " " + token;
         }
 
         Session old = sessionManager.getSession(username);
@@ -215,7 +266,8 @@ public class CommandRouter {
             sessionManager.removeSession(old.getConnection());
         }
         sessionManager.addSession(connection, user);
-        return Protocol.LOGIN_SUCCESS + " " + username + " " + user.getElo();
+        String token = authManager.generateToken(user);
+        return Protocol.LOGIN_SUCCESS + " " + username + " " + user.getElo() + " " + token;
     }
 
     private String handlePlay(WebSocket connection) {
@@ -226,13 +278,24 @@ public class CommandRouter {
         if (session.isInRoom()) {
             return Protocol.ALREADY_IN_ROOM + " " + session.getRoomId();
         }
-        matchmakingManager.enqueue(connection, session.getUsername(), session.getElo());
+        if (matchmakingClient != null) {
+            if (!matchmakingClient.enqueue(session.getUsername(), session.getElo(), gameServerId)) {
+                return Protocol.ERROR + " matchmaking unavailable";
+            }
+        } else if (matchmakingManager != null) {
+            matchmakingManager.enqueue(connection, session.getUsername(), session.getElo());
+        }
         return null;
     }
 
     private String handleCancelPlay(WebSocket connection) {
         Session session = sessionManager.getSession(connection);
-        if (session != null) {
+        if (session == null) {
+            return null;
+        }
+        if (matchmakingClient != null) {
+            matchmakingClient.cancel(session.getUsername());
+        } else if (matchmakingManager != null) {
             matchmakingManager.cancel(session.getUsername());
         }
         return null;
@@ -280,6 +343,8 @@ public class CommandRouter {
         session.setColor(color);
         Room room = roomManager.getRoom(roomId);
         String joinedMessage = Protocol.JOINED_ROOM + " " + roomId + " " + color;
+        send(connection, joinedMessage);
+
         String broadcast = Protocol.ROOM_UPDATED + " " + roomId + " " + session.getUsername() + " " + color;
         broadcastToRoom(roomId, broadcast);
 
@@ -331,20 +396,52 @@ public class CommandRouter {
         }
         int roomId = session.getRoomId();
         Room room = roomManager.getRoom(roomId);
-        if (room == null) {
-            return Protocol.NOT_IN_ROOM;
+        if (room == null || room.getGameState() == null) {
+            return Protocol.ERROR + " game not started";
         }
-        String moveString = String.join(" ", Arrays.copyOfRange(parts, 1, parts.length));
-        String moveMessage = Protocol.MOVE + " " + roomId + " " + moveString;
-        boolean capture = parts.length > 5 && "true".equals(parts[5]);
-        String soundEffect = capture ? "eat" : "move";
+        GameState gameState = room.getGameState();
+        if (gameState.isGameOver()) {
+            return Protocol.ERROR + " game over";
+        }
+
+        Position from;
+        Position to;
+        try {
+            from = new Position(Integer.parseInt(parts[1]), Integer.parseInt(parts[2]));
+            to = new Position(Integer.parseInt(parts[3]), Integer.parseInt(parts[4]));
+        } catch (NumberFormatException e) {
+            return Protocol.ERROR + " invalid positions";
+        }
+
+        String color = room.getColor(session.getUsername());
+        if (color == null || "VIEWER".equals(color)) {
+            return Protocol.ERROR + " not a player";
+        }
+
+        GameState.MoveResult result = gameState.applyMove(color, from, to);
+        if (!result.success) {
+            return Protocol.ERROR + " " + result.error;
+        }
+
+        String moveMessage = Protocol.MOVE + " " + roomId + " " + from.getRow() + " " + from.getCol() + " " + to.getRow() + " " + to.getCol();
+        String soundEffect = result.capture ? "eat" : "move";
         broadcastToRoom(roomId, moveMessage);
-        eventBus.publish("move.log", "move.log", session.getUsername() + " " + moveString);
+        eventBus.publish("move.log", "move.log", session.getUsername() + " " + from.getRow() + " " + from.getCol() + " " + to.getRow() + " " + to.getCol());
         eventBus.publish("sound.effect", "sound.effect", roomId + " " + soundEffect);
+
+        if (result.promotion) {
+            broadcastToRoom(roomId, Protocol.PROMOTION + " " + roomId + " " + to.getRow() + " " + to.getCol() + " Q");
+        }
+
+        if (result.gameOver) {
+            String reason = "DRAW".equals(result.winner) ? "stalemate" : "gameover";
+            endGame(roomId, result.winner, reason);
+        }
+
         return null;
     }
 
-    private String handleResign(WebSocket connection) throws SQLException {
+    private String handleResign(WebSocket connection) {
         Session session = sessionManager.getSession(connection);
         if (session == null) {
             return Protocol.NOT_AUTHENTICATED;
@@ -365,7 +462,7 @@ public class CommandRouter {
         return null;
     }
 
-    private String handleGameOver(WebSocket connection, String[] parts) throws SQLException {
+    private String handleGameOver(WebSocket connection, String[] parts) {
         if (parts.length < 2) {
             return Protocol.ERROR + " usage: GAME_OVER <WHITE|BLACK|DRAW>";
         }
@@ -395,7 +492,7 @@ public class CommandRouter {
         return null;
     }
 
-    private void endGame(int roomId, String result, String reason) throws SQLException {
+    private void endGame(int roomId, String result, String reason) {
         Room room = roomManager.getRoom(roomId);
         if (room == null) {
             return;
@@ -409,7 +506,7 @@ public class CommandRouter {
             return;
         }
         eloManager.updateRatings(white, black, result);
-        room.endGame();
+        room.endGame(result);
 
         User whiteUser = authManager.getUser(white);
         User blackUser = authManager.getUser(black);

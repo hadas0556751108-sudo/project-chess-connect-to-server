@@ -58,7 +58,6 @@ public class MoveHistory {
             blackMoves.add(move);
         }
 
-        // הודעה ל-observers ב-thread נפרד כדי לא להאט את המשחק
         notifyObservers(move, isWhite);
     }
 
@@ -67,7 +66,7 @@ public class MoveHistory {
             try {
                 observer.onMoveAdded(move, isWhite);
             } catch (Exception e) {
-                // לא נרצה ש-observer ישבור את המשחק
+                
                 e.printStackTrace();
             }
         }

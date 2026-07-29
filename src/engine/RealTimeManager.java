@@ -78,9 +78,6 @@ public class RealTimeManager {
 
                 eventQueue.remove(i);
                 i--;
-                if (!engine.isGameOver()) {
-                    engine.nextTurn();
-                }
                 engine.checkGameOver(board);
             }
         }

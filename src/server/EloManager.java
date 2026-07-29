@@ -3,8 +3,6 @@ package server;
 import auth.AuthManager;
 import model.User;
 
-import java.sql.SQLException;
-
 public class EloManager {
     private final AuthManager authManager;
 
@@ -12,7 +10,7 @@ public class EloManager {
         this.authManager = authManager;
     }
 
-    public void updateRatings(String white, String black, String result) throws SQLException {
+    public void updateRatings(String white, String black, String result) {
         User whiteUser = authManager.getUser(white);
         User blackUser = authManager.getUser(black);
         if (whiteUser == null || blackUser == null) {

@@ -8,7 +8,7 @@ public class KingRule implements MoveRule {
         int rowDiff = Math.abs(from.getRow() - to.getRow());
         int colDiff = Math.abs(from.getCol() - to.getCol());
 
-        // מלך זז לכל היותר משבצת אחת בכל כיוון
+        
         return rowDiff <= 1 && colDiff <= 1 && (rowDiff + colDiff > 0);
     }
 }

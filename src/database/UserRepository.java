@@ -1,82 +1,69 @@
 package database;
 
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.IndexOptions;
+import com.mongodb.client.model.FindOneAndUpdateOptions;
 import model.User;
-
-import java.sql.*;
+import org.bson.Document;
 
 public class UserRepository {
-    private final String dbPath;
+    private final MongoClient client;
+    private final MongoCollection<Document> users;
 
-    public UserRepository(String dbPath) {
-        this.dbPath = dbPath;
+    public UserRepository(String mongoUri) {
+        this.client = MongoClients.create(mongoUri);
+        MongoDatabase db = client.getDatabase("chess");
+        this.users = db.getCollection("users");
     }
 
-    public void init() throws SQLException {
-        String url = "jdbc:sqlite:" + dbPath;
-        try (Connection conn = DriverManager.getConnection(url)) {
-            if (conn != null) {
-                Statement stmt = conn.createStatement();
-                stmt.execute("CREATE TABLE IF NOT EXISTS users ("
-                        + " id INTEGER PRIMARY KEY AUTOINCREMENT,"
-                        + " username TEXT UNIQUE NOT NULL,"
-                        + " password_hash TEXT NOT NULL,"
-                        + " elo INTEGER NOT NULL DEFAULT 1200"
-                        + ")");
-                stmt.close();
-            }
-        }
+    public void init() {
+        users.createIndex(new Document("username", 1), new IndexOptions().unique(true));
     }
 
-    public boolean createUser(User user) throws SQLException {
-        String url = "jdbc:sqlite:" + dbPath;
-        String sql = "INSERT INTO users(username, password_hash, elo) VALUES(?, ?, ?)";
-        try (Connection conn = DriverManager.getConnection(url);
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, user.getUsername());
-            pstmt.setString(2, user.getPasswordHash());
-            pstmt.setInt(3, user.getElo());
-            pstmt.executeUpdate();
+    public boolean createUser(User user) {
+        try {
+            Document doc = new Document("username", user.getUsername())
+                    .append("password_hash", user.getPasswordHash())
+                    .append("elo", user.getElo());
+            users.insertOne(doc);
             return true;
-        } catch (SQLException e) {
-            if (e.getMessage() != null && e.getMessage().contains("UNIQUE constraint failed")) {
+        } catch (com.mongodb.MongoWriteException e) {
+            if (e.getError().getCategory() == com.mongodb.ErrorCategory.DUPLICATE_KEY) {
                 return false;
             }
             throw e;
         }
     }
 
-    public User findByUsername(String username) throws SQLException {
-        String url = "jdbc:sqlite:" + dbPath;
-        String sql = "SELECT username, password_hash, elo FROM users WHERE username = ?";
-        try (Connection conn = DriverManager.getConnection(url);
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, username);
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    return new User(
-                            rs.getString("username"),
-                            rs.getString("password_hash"),
-                            rs.getInt("elo")
-                    );
-                }
-            }
+    public User findByUsername(String username) {
+        Document doc = users.find(new Document("username", username)).first();
+        if (doc == null) {
+            return null;
         }
-        return null;
+        return new User(
+                doc.getString("username"),
+                doc.getString("password_hash"),
+                doc.getInteger("elo", 1200)
+        );
     }
 
-    public boolean updateElo(String username, int elo) throws SQLException {
-        String url = "jdbc:sqlite:" + dbPath;
-        String sql = "UPDATE users SET elo = ? WHERE username = ?";
-        try (Connection conn = DriverManager.getConnection(url);
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, elo);
-            pstmt.setString(2, username);
-            int rows = pstmt.executeUpdate();
-            return rows > 0;
-        }
+    public boolean updateElo(String username, int elo) {
+        Document result = users.findOneAndUpdate(
+                new Document("username", username),
+                new Document("$set", new Document("elo", elo)),
+                new FindOneAndUpdateOptions().upsert(false)
+        );
+        return result != null;
     }
 
-    public boolean exists(String username) throws SQLException {
+    public boolean exists(String username) {
         return findByUsername(username) != null;
+    }
+
+    public void close() {
+        client.close();
     }
 }

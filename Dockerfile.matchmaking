@@ -1,0 +1,26 @@
+# Build stage: resolve Maven dependencies and compile matchmaking service
+FROM maven:3.9-eclipse-temurin-21 AS build
+WORKDIR /app
+
+COPY pom.xml .
+RUN mvn -B -Dmaven.compiler.skip=true -Dmaven.test.skip=true dependency:copy-dependencies -DoutputDirectory=lib
+
+COPY src ./src
+RUN javac -encoding UTF-8 -cp "lib/*" -sourcepath src -d classes src/matchmaking/MatchmakingServiceMain.java
+
+# Runtime stage
+FROM eclipse-temurin:21-jre
+WORKDIR /app
+
+COPY --from=build /app/classes ./classes
+COPY --from=build /app/lib ./lib
+
+EXPOSE 8082
+
+ENV REDIS_URL="redis://redis:6379"
+ENV MATCHMAKING_PORT="8082"
+ENV ELO_RANGE="100"
+ENV MATCH_TIMEOUT_SECONDS="60"
+ENV MATCHMAKING_ID="matchmaking-1"
+
+ENTRYPOINT ["java", "-cp", "classes:lib/*", "matchmaking.MatchmakingServiceMain"]

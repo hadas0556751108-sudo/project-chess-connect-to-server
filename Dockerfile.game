@@ -1,0 +1,27 @@
+# Build stage: resolve Maven dependencies and compile game server
+FROM maven:3.9-eclipse-temurin-11 AS build
+WORKDIR /app
+
+COPY pom.xml .
+RUN mvn -B -Dmaven.compiler.skip=true -Dmaven.test.skip=true dependency:copy-dependencies -DoutputDirectory=lib
+
+COPY src ./src
+RUN javac -encoding UTF-8 -source 1.8 -target 1.8 -cp "lib/*" -sourcepath src -d classes src/server/ServerMain.java
+
+# Runtime stage
+FROM eclipse-temurin:11-jre
+WORKDIR /app
+
+COPY --from=build /app/classes ./classes
+COPY --from=build /app/lib ./lib
+
+EXPOSE 8083
+
+ENV MONGO_URI="mongodb://mongodb:27017/chess"
+ENV REDIS_URL="redis://redis:6379"
+ENV GAME_SERVER_PORT="8083"
+ENV GAME_SERVER_ID="game-server"
+ENV MATCHMAKING_SERVICE_URL="http://matchmaking-service:8082"
+ENV JWT_SECRET="dev-secret-do-not-use-in-production"
+
+ENTRYPOINT ["java", "-cp", "classes:lib/*", "server.ServerMain"]

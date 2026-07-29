@@ -11,19 +11,13 @@ import ui.HomeScreen;
 
 import javax.swing.*;
 import java.net.URI;
-import java.sql.SQLException;
 import java.util.Scanner;
 
 public class SingleProcessLauncher {
     public static void main(String[] args) throws Exception {
-        String dbPath = "chess.db";
-        UserRepository repository = new UserRepository(dbPath);
-        try {
-            repository.init();
-        } catch (SQLException e) {
-            System.err.println("Failed to initialize database: " + e.getMessage());
-            return;
-        }
+        String mongoUri = "mongodb://localhost:27017/chess";
+        UserRepository repository = new UserRepository(mongoUri);
+        repository.init();
 
         AuthManager authManager = new AuthManager(repository);
         CommandRouter router = new CommandRouter(authManager);

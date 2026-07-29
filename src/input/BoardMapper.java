@@ -18,7 +18,7 @@ public class BoardMapper {
         int row = pixelY / cellSize;
 
         if (col < 0 || col >= boardWidth || row < 0 || row >= boardHeight) {
-            return null; // Outside board
+            return null; 
         }
 
         return new Position(row, col);

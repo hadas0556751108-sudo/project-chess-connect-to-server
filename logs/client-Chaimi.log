@@ -1,0 +1,70 @@
+2026-07-29 10:37:48.152 Connected to server
+2026-07-29 10:37:48.154 Welcome to Chess Server
+2026-07-29 10:37:48.154 Commands: REGISTER <username> <password> | LOGIN <username> <password> | QUIT
+2026-07-29 10:38:10.608 SEND: REGISTER Chaimi pass
+2026-07-29 10:38:10.859 RECV: REGISTER_SUCCESS Chaimi | handlers: 0
+2026-07-29 10:38:10.859 > REGISTER_SUCCESS Chaimi
+2026-07-29 10:38:10.859 Registered successfully. You can now LOGIN.
+2026-07-29 10:38:29.895 SEND: LOGIN Chaimi pass
+2026-07-29 10:38:30.146 RECV: LOGIN_SUCCESS Chaimi 1200 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJDaGFpbWkiLCJlbG8iOjEyMDAsImlhdCI6MTc4NTMxMDcxMCwiZXhwIjoxNzg1Mzk3MTEwfQ.1dkjPRtXv30PWenf3ePq9VyHCGX8WgsCFELMFIFHSN8 | handlers: 0
+2026-07-29 10:38:30.146 > LOGIN_SUCCESS Chaimi 1200 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJDaGFpbWkiLCJlbG8iOjEyMDAsImlhdCI6MTc4NTMxMDcxMCwiZXhwIjoxNzg1Mzk3MTEwfQ.1dkjPRtXv30PWenf3ePq9VyHCGX8WgsCFELMFIFHSN8
+2026-07-29 10:38:48.440 SEND: JOIN_ROOM 2
+2026-07-29 10:38:48.446 RECV: JOINED_ROOM 2 BLACK | handlers: 1
+2026-07-29 10:38:48.446 DISPATCH to ui.HomeScreen
+2026-07-29 10:38:48.450 RECV: ROOM_UPDATED 2 Chaimi BLACK | handlers: 1
+2026-07-29 10:38:48.451 DISPATCH to ui.HomeScreen
+2026-07-29 10:38:48.451 RECV: GAME_START 2 David Chaimi | handlers: 1
+2026-07-29 10:38:48.452 DISPATCH to ui.HomeScreen
+2026-07-29 10:38:48.452 RECV: JOINED_ROOM 2 BLACK | handlers: 1
+2026-07-29 10:38:48.453 DISPATCH to ui.HomeScreen
+2026-07-29 10:38:48.465 [HomeScreen] openGameWindow: roomId=2 color=BLACK
+2026-07-29 10:38:49.163 [HomeScreen] color arrived after GAME_START; opening board
+2026-07-29 10:38:49.168 [HomeScreen] openGameWindow: roomId=2 color=BLACK
+2026-07-29 10:39:05.203 RECV: ROOM_UPDATED 2 chaim VIEWER | handlers: 1
+2026-07-29 10:39:05.207 DISPATCH to ui.HomeScreen
+2026-07-29 10:39:05.207 RECV: GAME_START 2 David Chaimi | handlers: 1
+2026-07-29 10:39:05.207 DISPATCH to ui.HomeScreen
+2026-07-29 10:39:05.212 [HomeScreen] openGameWindow: roomId=2 color=BLACK
+2026-07-29 10:40:52.021 Click at: model.Position@1d44ccbf
+2026-07-29 10:40:52.022 selected: null, clickedPiece: BP
+2026-07-29 10:40:52.022 Selected piece at: model.Position@1d44ccbf
+2026-07-29 10:40:52.328 Click at: model.Position@6d49c9f4
+2026-07-29 10:40:52.328 selected: model.Position@1d44ccbf, clickedPiece: BP
+2026-07-29 10:40:52.328 selectedPiece: BP, clickedPiece: BP
+2026-07-29 10:40:52.329 clickedPiece color: B, selectedPiece color: B
+2026-07-29 10:40:52.329 Changed selection to: model.Position@6d49c9f4
+2026-07-29 10:40:53.629 Click at: model.Position@6326357f
+2026-07-29 10:40:53.631 selected: model.Position@6d49c9f4, clickedPiece: null
+2026-07-29 10:40:53.631 selectedPiece: BP, clickedPiece: null
+2026-07-29 10:40:53.631 Attempting move from model.Position@6d49c9f4 to model.Position@6326357f
+2026-07-29 10:40:53.633 [GameController] onMoveRequested: from=model.Position@6d49c9f4 to=model.Position@6326357f color=BLACK playerColor=B
+2026-07-29 10:40:53.634 [GameController] sendMove: MOVE 1 3 2 3 false
+2026-07-29 10:40:53.634 SEND: MOVE 1 3 2 3 false
+2026-07-29 10:40:53.639 RECV: MOVE 2 1 3 2 3 | handlers: 2
+2026-07-29 10:40:53.639 DISPATCH to ui.HomeScreen
+2026-07-29 10:40:53.640 DISPATCH to engine.GameController
+2026-07-29 10:40:53.641 [GameController] handleMessage: MOVE 2 1 3 2 3
+2026-07-29 10:40:53.642 RECV: SOUND move | handlers: 2
+2026-07-29 10:40:53.642 DISPATCH to ui.HomeScreen
+2026-07-29 10:40:53.643 DISPATCH to engine.GameController
+2026-07-29 10:40:53.644 [GameController] handleMessage: SOUND move
+2026-07-29 10:40:53.662 [GameController] handleNetworkMessage: MOVE 2 1 3 2 3
+2026-07-29 10:40:53.663 [GameController] message type: MOVE parts.length: 6
+2026-07-29 10:40:53.663 [GameController] MOVE parsed: (1,3) -> (2,3)
+2026-07-29 10:40:53.670 [GameController] handleNetworkMessage: SOUND move
+2026-07-29 10:40:53.671 [GameController] message type: SOUND parts.length: 2
+2026-07-29 10:41:25.602 SEND: JOIN_ROOM 2
+2026-07-29 10:41:25.607 RECV: ALREADY_IN_ROOM 2 | handlers: 2
+2026-07-29 10:41:25.607 DISPATCH to ui.HomeScreen
+2026-07-29 10:41:25.608 DISPATCH to engine.GameController
+2026-07-29 10:41:25.609 [GameController] handleMessage: ALREADY_IN_ROOM 2
+2026-07-29 10:41:25.611 [GameController] handleNetworkMessage: ALREADY_IN_ROOM 2
+2026-07-29 10:41:25.611 [GameController] message type: ALREADY_IN_ROOM parts.length: 2
+2026-07-29 10:41:35.516 SEND: LEAVE_ROOM
+2026-07-29 10:41:35.521 RECV: LEFT_ROOM 2 | handlers: 2
+2026-07-29 10:41:35.522 DISPATCH to ui.HomeScreen
+2026-07-29 10:41:35.522 DISPATCH to engine.GameController
+2026-07-29 10:41:35.522 [GameController] handleMessage: LEFT_ROOM 2
+2026-07-29 10:41:35.537 [GameController] handleNetworkMessage: LEFT_ROOM 2
+2026-07-29 10:41:35.538 [GameController] message type: LEFT_ROOM parts.length: 2
+2026-07-29 10:41:44.173 Disconnected from server: 

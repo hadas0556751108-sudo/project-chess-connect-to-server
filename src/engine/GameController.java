@@ -74,7 +74,7 @@ public class GameController implements GameEventListener, MessageHandler {
         Piece piece = gameEngine.getBoard().getPieceAt(pos);
         if (piece == null) return;
 
-        // במצב רשת קפיצה תתאפשר רק על כלי השחקן המקומי, כדי למנוע בעיות סנכרון
+        
         if (networkMode) {
             char playerColor = getPlayerColorChar();
             if (playerColor == 0 || piece.getColor() != playerColor) {

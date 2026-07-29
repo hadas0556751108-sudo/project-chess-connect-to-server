@@ -36,14 +36,13 @@ public class GameEngine {
         listeners.add(listener);
     }
 
-    // בתוך GameEngine.java
+  
     public void processClick(Position pos) {
-        // מניעת לחיצות אם יש מהלך בתהליך!
+      
         if (this.isGameOver) return;
         
         System.out.println("Click at: " + pos);
         
-        // בודק אם הכלי במיקום הזה כבר נמצא בתנועה
         if (isPieceMoving(pos)) {
             System.out.println("Piece is moving, click ignored");
             return;
@@ -59,7 +58,7 @@ public class GameEngine {
                 System.out.println("Selected piece at: " + selected);
             }
         } else {
-            // אם לחצנו על כלי שלנו - מחליפים בחירה
+           
             Piece selectedPiece = board.getPieceAt(selected);
             System.out.println("selectedPiece: " + selectedPiece + ", clickedPiece: " + clickedPiece);
             if (clickedPiece != null && selectedPiece != null) {
@@ -70,7 +69,7 @@ public class GameEngine {
                     return;
                 }
             }
-            // ניסיון מהלך
+         
             System.out.println("Attempting move from " + selected + " to " + pos);
             if (rules.isMoveLegal(board.getGrid(), selected, pos)) {
                 notifyMoveRequested(selected, pos);
@@ -86,31 +85,31 @@ public class GameEngine {
         Piece p = board.getPieceAt(pos);
         if (p == null) return;
 
-        // חשב duration מה-config
+        
         String pieceKey = Character.toLowerCase(p.getColor()) + "" + p.getType();
         StateConfig config = configLoader.getConfig(pieceKey, "jump");
         double speedMetersPerSec = (config != null) ? config.speedMetersPerSec() : 0.3;
         
-        // קפיצה היא במקום, אז אם המהירות 0 נסתמך על אורך האנימציה
+      
         long duration;
         if (speedMetersPerSec > 0) {
-            double distanceMeters = 0.5; // חצי מטר לקפיצה במקום
+            double distanceMeters = 0.5; 
             double durationSec = distanceMeters / speedMetersPerSec;
             duration = (long) (durationSec * 1000);
         } else {
-            // speed 0 פירושו שאין תזוזה פיזית – משך הפעולה הוא אורך רצף התמונות
+          
             if (config != null && config.frameCount() > 0 && config.framesPerSec() > 0) {
                 duration = (long) (config.frameCount() * 1000.0 / config.framesPerSec());
             } else {
-                duration = 500; // ברירת מחדל חצי שנייה
+                duration = 500; 
             }
         }
         
-        // שנה את state של הכלי ל-JUMPING
+    
         p.setCurrentState(Piece.State.JUMPING);
         p.setStateStartTime(timeManager.getCurrentTime());
         
-        // השתמש ב-gameClock כדי שה-MoveEvent יתבצע בזמן הנכון
+        
         long arrivalTime = timeManager.getCurrentTime() + duration;
         MoveEvent jump = new MoveEvent(p, pos, pos, arrivalTime, true);
         timeManager.addEvent(jump);
@@ -150,16 +149,16 @@ public class GameEngine {
         Piece p = board.getPieceAt(to);
         if (p == null) return;
 
-        // הכתרה: חייל המגיע לשורה האחרונה של הלוח
+        
         if (p.getType() == 'P') {
             Piece[][] grid = board.getGrid();
             int lastRow = grid.length - 1;
-            // חייל לבן נע לכיוון מעלה (שורה קטנה יותר), חייל שחור לכיוון מטה (שורה גדולה יותר)
+           
             boolean promoteWhite = (p.getColor() == 'W' && to.getRow() == 0);
             boolean promoteBlack = (p.getColor() == 'B' && to.getRow() == lastRow);
             if (promoteWhite || promoteBlack) {
                 Piece queen = new Piece(p.getColor(), 'Q');
-                queen.setHasMoved(true); // המלכה יורשת את ה-hasMoved מהחייל
+                queen.setHasMoved(true); 
                 board.updatePiece(to, queen);
             }
         }
@@ -195,11 +194,6 @@ public class GameEngine {
             return;
         }
 
-        if (!hasLegalMoves(this.currentTurn)) {
-            this.isGameOver = true;
-            this.winner = "Draw";
-            notifyGameOver("DRAW");
-        }
     }
 
     private boolean hasLegalMoves(char color) {
@@ -223,7 +217,7 @@ public class GameEngine {
         return false;
     }
 
-    // בתוך GameEngine.java
+
     public boolean isGameOver() {
         return this.isGameOver;
     }
@@ -242,38 +236,36 @@ public class GameEngine {
 
     public GameSnapshot snapshot(Position selectedPosition) {
         List<PieceSnapshot> pieceSnapshots = new ArrayList<>();
-        int cellSize = 100; // גודל תא בפיקסלים
-
-        // עובר על כל הכלים בלוח
+        int cellSize = 100; 
+      
         for (int r = 0; r < 8; r++) {
             for (int c = 0; c < 8; c++) {
                 Position pos = new Position(r, c);
                 Piece piece = board.getPieceAt(pos);
                 if (piece != null) {
-                    // בודק אם הכלי בתנועה
+                  
                     MoveEvent activeEvent = findActiveEventForPiece(piece);
                     double pixelX, pixelY;
                     PieceVisualState state;
                     long stateElapsed = 0;
 
                     if (activeEvent != null) {
-                        // כלי בתנועה - חשב מיקום מבוסס progress
+                     
                         long currentTime = timeManager.getCurrentTime();
                         long arrivalTime = activeEvent.getArrivalTime();
                         
-                        // השתמש בזמני האירוע השמורים במקום לחשב מחדש מה-config.
-                        // זה מונע חלוקה באפס בקפיצות (from == to, speed_m_per_sec == 0).
+                       
                         Position from = activeEvent.getFrom();
                         Position to = activeEvent.getTo();
                         long startTime = piece.getStateStartTime();
                         long duration = arrivalTime - startTime;
                         if (duration <= 0) {
-                            duration = 1; // בטיחות מפני חלוקה באפס
+                            duration = 1;
                         }
                         long elapsed = currentTime - startTime;
                         double progress = Math.min(1.0, (double) elapsed / duration);
                         
-                        // אם ה-progress הוא 1.0, הכלי הגיע ליעד - השתמש במיקום הסופי
+                        
                         if (progress >= 1.0) {
                             pixelX = to.getCol() * cellSize;
                             pixelY = to.getRow() * cellSize;
@@ -290,7 +282,7 @@ public class GameEngine {
                         state = activeEvent.isJump() ? PieceVisualState.JUMPING : PieceVisualState.MOVING;
                         stateElapsed = piece.getStateElapsedMillis(timeManager.getCurrentTime());
                     } else {
-                        // כלי עומד במקום - השתמש ב-state מה-Piece
+                        
                         pixelX = c * cellSize;
                         pixelY = r * cellSize;
                         state = piece.getVisualState();
@@ -366,7 +358,7 @@ public class GameEngine {
         }
     }
 
-    // בודק אם הכלי במיקום הזה כבר נמצא בתנועה
+   
     private boolean isPieceMoving(Position pos) {
         for (MoveEvent event : timeManager.getActiveEvents()) {
             if (event.getFrom().equals(pos) || event.getTo().equals(pos)) {

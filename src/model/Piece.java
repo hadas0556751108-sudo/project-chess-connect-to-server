@@ -10,16 +10,16 @@ public class Piece {
     private boolean hasMoved=false;
     public enum State { IDLE, MOVING, JUMPING, SHORT_REST, LONG_REST }
     private State currentState = State.IDLE;
-    private long stateStartTime = 0; // מתי התחלנו את ה-state הנוכחי (ב-gameClock)
+    private long stateStartTime = 0; 
 
     public Piece(char color, char type) {
         this.color = color;
         this.type = type;
         this.hasMoved = false;
-        this.stateStartTime = 0; // מתחיל מ-0 כמו ה-gameClock
+        this.stateStartTime = 0; 
     }
 
-    // Getters & Setters
+   
     public char getColor() { return color; }
     public char getType() { return type; }
     public boolean hasMoved() { return hasMoved; }
@@ -27,7 +27,7 @@ public class Piece {
     public State getCurrentState() { return currentState; }
     public void setCurrentState(State state) { 
         this.currentState = state; 
-        // stateStartTime יעודכן על ידי RealTimeManager עם ה-gameClock הנוכחי
+       
     }
     public void setStateStartTime(long time) {
         this.stateStartTime = time;
@@ -41,7 +41,7 @@ public class Piece {
     public String toString() {
         return "" + color + type;
     }
-    // מתודה ב-Piece או במחלקה מתווכת
+    
     public PieceVisualState getVisualState() {
         switch (this.currentState) {
             case IDLE: return PieceVisualState.IDLE;
@@ -51,5 +51,13 @@ public class Piece {
             case LONG_REST: return PieceVisualState.LONG_REST;
             default: return PieceVisualState.IDLE;
         }
+    }
+
+    public Piece copy() {
+        Piece copy = new Piece(this.color, this.type);
+        copy.setHasMoved(this.hasMoved);
+        copy.setCurrentState(this.currentState);
+        copy.setStateStartTime(this.stateStartTime);
+        return copy;
     }
 }

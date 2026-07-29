@@ -25,7 +25,7 @@ public class RulesEngine {
 
         MoveRule rule = rules.get(piece.getType());
         if (rule != null) {
-            // ה-Engine קורא ל-Validator במקום לקרוא לחוק ישירות
+           
             return MoveValidator.isLegalMove(grid, from, to, rule);
         }
         return false;

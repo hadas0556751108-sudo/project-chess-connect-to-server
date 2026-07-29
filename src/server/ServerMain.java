@@ -2,30 +2,35 @@ package server;
 
 import auth.AuthManager;
 import database.UserRepository;
-
-import java.sql.SQLException;
+import network.MatchmakingClient;
+import redis.RedisClient;
 
 public class ServerMain {
     public static void main(String[] args) throws Exception {
-        String dbPath = args.length > 0 ? args[0] : "chess.db";
-        int port = args.length > 1 ? Integer.parseInt(args[1]) : 8080;
+        String mongoUri = System.getenv().getOrDefault("MONGO_URI", "mongodb://localhost:27017/chess");
+        int port = Integer.parseInt(System.getenv().getOrDefault("GAME_SERVER_PORT", "8080"));
+        String gameServerId = System.getenv().getOrDefault("GAME_SERVER_ID", "game-server");
+        String redisUrl = System.getenv().getOrDefault("REDIS_URL", "redis://localhost:6379");
+        String matchmakingUrl = System.getenv().getOrDefault("MATCHMAKING_SERVICE_URL", "http://localhost:8082");
 
-        UserRepository repository = new UserRepository(dbPath);
-        try {
-            repository.init();
-        } catch (SQLException e) {
-            System.err.println("Failed to initialize database: " + e.getMessage());
-            return;
-        }
+        UserRepository repository = new UserRepository(mongoUri);
+        repository.init();
 
         AuthManager authManager = new AuthManager(repository);
-        CommandRouter router = new CommandRouter(authManager);
+        RedisClient redisClient = new RedisClient(redisUrl);
+        MatchmakingClient matchmakingClient = new MatchmakingClient(matchmakingUrl);
+        CommandRouter router = new CommandRouter(authManager, redisClient, matchmakingClient, gameServerId);
         ChessServer server = new ChessServer(port, router);
         server.start();
 
-        System.out.println("Press Enter to stop the server...");
-        System.in.read();
-
-        server.stop();
+        System.out.println("Server running. Send SIGTERM to stop.");
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            try {
+                server.stop();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }));
+        Thread.currentThread().join();
     }
 }

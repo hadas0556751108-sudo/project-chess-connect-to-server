@@ -12,7 +12,7 @@ public class BoardInputReader {
         List<String> boardLines = new ArrayList<>();
         int expectedLength = -1;
 
-        // קריאת שורות הלוח עד שמגיעים למילה "Commands:" או סוף קלט
+      
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine().trim();
             if (line.isEmpty() || line.equals("Board:")) continue;
@@ -39,12 +39,12 @@ public class BoardInputReader {
             rawData[i] = boardLines.get(i).split("\\s+");
         }
 
-        // כאן אנחנו יוצרים את ה-Board האמיתי שמכיל Pieces ולא Strings
+       
         return new Board(rawData);
     }
 
     private static boolean isValidToken(String token) {
-        if (token.equals(".")) return true; // ריק זה תקין
+        if (token.equals(".")) return true; 
         if (token.length() != 2) return false;
 
         char color = token.charAt(0);

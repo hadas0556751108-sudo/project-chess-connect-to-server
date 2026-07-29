@@ -9,10 +9,10 @@ public class BishopRule implements MoveRule {
         int rowDiff = Math.abs(from.getRow() - to.getRow());
         int colDiff = Math.abs(from.getCol() - to.getCol());
 
-        // רץ זז רק באלכסון (ההפרש בשורות שווה להפרש בעמודות)
+       
         if (rowDiff != colDiff) return false;
 
-        // בדיקה שהדרך פנויה
+        
         return PathValidator.isPathClear(grid, from.getRow(), from.getCol(), to.getRow(), to.getCol());
     }
 }
