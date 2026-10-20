@@ -1,32 +1,74 @@
-# Chess Game with Real-Time Animations & WebSocket Multiplayer
+# Chess Game – Real-Time Multiplayer with a Microservices Backend
 
-A Java chess application that supports full piece movement rules, sprite-based animations, real-time movement, and both local and networked multiplayer over WebSocket.
+A Java chess application with sprite-based animations, real-time piece movement, and online multiplayer over WebSocket. The project started as a local desktop game and grew into a containerized, multi-service system with authentication, ELO-based matchmaking, and a server-side game state.
 
-## Features
+## Highlights
 
-- **Full chess rules** for all pieces: King, Queen, Rook, Bishop, Knight, and Pawn, including blocking, captures, and two-square pawn start.
-- **Real-time movement**: pieces are animated visually and the board is updated only when a piece reaches its destination.
-- **Jump animation**: double-click a selected piece (or the same square) to play the `jump` sprite animation.
-- **WebSocket server** with rooms, matchmaking, user authentication, ELO ratings, and disconnection handling.
-- **Event bus** for internal server communication and client sound notifications.
+- **Full chess rules** for all pieces (King, Queen, Rook, Bishop, Knight, Pawn), including blocking, captures, and the two-square pawn start.
+- **Real-time movement**: pieces are animated and the board updates only when a piece reaches its destination.
+- **Sprite animations** per piece state: `idle`, `move`, `jump`, `short_rest`, `long_rest` (configurable via `config.json`).
+- **Microservices architecture**: separate Auth, Matchmaking, and Game services, each with its own Dockerfile, behind an Nginx gateway.
+- **Authentication**: JWT tokens and BCrypt password hashing.
+- **ELO matchmaking**: players are paired within a ±100 ELO range using a Redis Sorted Set, with a 60-second timeout.
+- **Server-side move validation**: the game server applies moves with the same rules engine used by the client (`GameState`).
+- **Disconnection handling**, rooms, and an internal event bus.
+- **Unit tests** (JUnit 5 + Mockito) with JaCoCo coverage reports.
+
+## Architecture
+
+```
+Clients (Swing UI, WebSocket)
+          |
+      [ Nginx ]            :9000
+   /auth    /match    /game
+     |         |         |
+ Auth      Matchmaking   Game Server
+ Service   Service       (rooms, move validation, ELO updates)
+ (JWT)     (Redis queue)
+     |         |         |
+  MongoDB    Redis    Redis + MongoDB
+```
+
+| Service | Port | Responsibility | Storage |
+|---|---|---|---|
+| `auth-service` | 8081 | Registration, login, JWT issuing | MongoDB |
+| `matchmaking-service` | 8082 | Queue players by ELO, create matches | Redis |
+| `game-server` | 8083 | WebSocket rooms, move validation, game state, ELO updates | Redis, MongoDB |
+| `nginx` | 9000 | Reverse proxy / gateway for all services | – |
+
+A monitoring stack (Prometheus, Grafana, Jaeger) is included in the Docker Compose setup.
+
+The design rationale (why MongoDB + Redis instead of SQLite at scale, load estimates, room distribution) is described in [`chess-server-design-dabe38.md`](chess-server-design-dabe38.md).
+
+## Tech Stack
+
+- **Language:** Java 8+ (Docker images use Java 11)
+- **Networking:** Java-WebSocket, HTTP services
+- **Databases:** MongoDB (users, ELO, history), Redis via Jedis (matchmaking queue, real-time state), SQLite (local/single-process mode)
+- **Security:** JWT (`java-jwt`), BCrypt
+- **UI:** Java Swing / AWT
+- **Build & test:** Maven, JUnit 5, Mockito, JaCoCo
+- **DevOps:** Docker, Docker Compose, Nginx, Prometheus, Grafana, Jaeger
 
 ## Project Structure
 
-| Package     | Purpose                                                                 |
-|-------------|-------------------------------------------------------------------------|
-| `app`       | `SingleProcessLauncher` — starts a server and one client in one process. |
-| `auth`      | `AuthManager` and `LoginCLI` for SHA-256 password auth via console.     |
-| `client`    | `ClientMain` entry point for a standalone networked client.             |
-| `database`  | `UserRepository` for SQLite user/ELO persistence.                       |
-| `engine`    | Core gameplay: `GameEngine`, `RealTimeManager`, `GameController`, `GameSnapshot`, `StateConfigLoader`, animation state handling. |
-| `image`     | `Img` utility for loading, resizing, and drawing transparent PNGs.      |
-| `input`     | `BoardInputReader` and `BoardMapper` (pixel-to-board conversion).       |
-| `logic`     | `MoveValidator`, `RulesEngine`, `PathValidator`, and per-piece `MoveRule` classes. |
-| `model`     | `Board`, `Piece`, `Position`, `MoveEvent`, `User`.                      |
-| `network`   | `ChessClient`, `Protocol` constants, `MessageHandler`, `ClientLogger`.  |
-| `server`    | WebSocket server: `ChessServer`, `CommandRouter`, `Room`, `RoomManager`, `SessionManager`, `DisconnectionManager`, `EventBus`. |
-| `ui`        | `HomeScreen` lobby and `GameWindow` rendering loop.                     |
-| `view`      | `ImgRenderer` and `PieceImageLoader` for drawing the board and piece animations. |
+| Package | Purpose |
+|---|---|
+| `app` | `SingleProcessLauncher` – starts a server and one client in one process. |
+| `auth` | `AuthManager`, `AuthServiceMain`, `JwtUtil`, `LoginCLI` – authentication service and console login. |
+| `matchmaking` | `MatchmakingServiceMain`, `MatchmakingScanner` – ELO-based matchmaking service. |
+| `redis` | `RedisClient` – thin Redis wrapper. |
+| `client` | `ClientMain` – entry point for a standalone networked client. |
+| `database` | `UserRepository` – user and ELO persistence. |
+| `engine` | `GameEngine`, `RealTimeManager`, `GameController`, `GameSnapshot`, `StateConfigLoader`, `ScoreManager`, `MoveHistory` – core gameplay and animation state. |
+| `image` | `Img` – loading, resizing, and drawing transparent PNGs. |
+| `input` | `BoardInputReader`, `BoardMapper` – pixel-to-board conversion. |
+| `logic` | `MoveValidator`, `RulesEngine`, `PathValidator`, and per-piece `MoveRule` classes. |
+| `model` | `Board`, `Piece`, `Position`, `MoveEvent`, `User`. |
+| `network` | `ChessClient`, `MatchmakingClient`, `Protocol`, `MessageHandler`, `ClientLogger`. |
+| `server` | `ChessServer`, `CommandRouter`, `Room`, `RoomManager`, `SessionManager`, `DisconnectionManager`, `MatchmakingManager`, `EloManager`, `GameState`, `EventBus`. |
+| `ui` | `HomeScreen` lobby, `GameWindow` rendering loop, `SoundPlayer`, `SpriteManager`. |
+| `view` | `ImgRenderer`, `PieceImageLoader` – board and piece rendering. |
 
 ## Assets
 
@@ -36,44 +78,33 @@ Piece sprites are organized by color, type, and state:
 assets/pieces_mine/<color><type>/states/<state>/sprites/<frame>.png
 ```
 
-For example:
-
-```
-assets/pieces_mine/wK/states/jump/sprites/1.png
-```
-
-Supported states: `idle`, `move`, `jump`, `short_rest`, `long_rest`.
-
-`assets/board.png` is the board background.
-
-Each `states/<state>` folder may contain a `config.json` used by `StateConfigLoader` to configure frames per second, frame count, looping, and movement speed.
+Example: `assets/pieces_mine/wK/states/jump/sprites/1.png`.
+`assets/board.png` is the board background. Each state folder may contain a `config.json` (frames per second, frame count, looping, movement speed) read by `StateConfigLoader`.
 
 ## Prerequisites
 
-- JDK 8 or later.
-- The required JARs in the `lib/` folder:
-  - `Java-WebSocket-1.6.0.jar`
-  - `slf4j-api-2.0.18.jar`
-  - `slf4j-nop-2.0.18.jar`
-  - `sqlite-jdbc-3.53.2.0.jar`
-- Maven is optional; the build scripts use `javac` directly with the `lib` JARs.
+- JDK 8 or later
+- Docker Desktop (for the full microservices setup)
+- Maven (optional; the batch scripts compile with `javac` using the JARs in `lib/`)
 
-## Run Instructions
+## Running the Project
 
-The project includes several Windows batch files for building and running.
+### Full system with Docker Compose
 
-### Quick single-process demo
+```bash
+docker compose up --build
+```
+
+This starts Nginx, the Auth, Matchmaking, and Game services, MongoDB, Redis, and the monitoring stack. The gateway is available at `http://localhost:9000`.
+
+> The JWT secret and Grafana credentials in `docker-compose.yml` are development defaults and must be changed for any real deployment.
+
+### Quick single-process demo (Windows)
 
 Starts a server and one client in the same JVM:
 
 ```batch
 run.bat app.SingleProcessLauncher
-```
-
-Or directly:
-
-```batch
-java -cp "target/classes;lib\*" app.SingleProcessLauncher
 ```
 
 ### Local game without a server
@@ -82,31 +113,10 @@ java -cp "target/classes;lib\*" app.SingleProcessLauncher
 run.bat
 ```
 
-Or directly:
-
-```batch
-java -cp "target/classes;lib\*" Main
-```
-
-### Dedicated server
+### Dedicated server and client (Windows)
 
 ```batch
 run-server.bat
-```
-
-Or directly:
-
-```batch
-java -cp "target/classes;lib\*" server.ServerMain
-```
-
-The default WebSocket port is `8080`.
-
-### Client
-
-Connect to the default server on `localhost:8080`:
-
-```batch
 run-client.bat
 ```
 
@@ -118,25 +128,32 @@ java -cp "target/classes;lib\*" client.ClientMain ws://localhost:8080
 
 ### Two-player local demo
 
-Compiles the project, starts the server, and opens two client windows:
-
 ```batch
 start-all.bat
 ```
 
+### Tests
+
+```bash
+mvn test
+```
+
+The coverage report is generated by JaCoCo in `target/site/jacoco`.
+
 ## How to Play
 
-1. **Login / Register** using the console prompts.
-2. **In the HomeScreen lobby:**
-   - **Create Room** / **Join Room** / **List Rooms** to play with friends.
-   - **Play (Matchmaking)** to be paired automatically within a +/-100 ELO range.
+1. **Log in / register** with the console prompts.
+2. **In the lobby (`HomeScreen`):**
+   - **Create Room / Join Room / List Rooms** to play with friends.
+   - **Play (Matchmaking)** to be paired automatically within ±100 ELO.
 3. **In the game window:**
-   - Click a piece to select it, then click a destination square to move.
-   - Double-click the selected piece (or the same square within 300 ms) to trigger the **jump** animation.
-   - Use the **Resign** or **Draw** buttons in the HomeScreen when needed.
+   - Click a piece, then a destination square to move.
+   - Double-click the selected piece (within 300 ms) to play the **jump** animation.
+   - Use **Resign** or **Draw** from the lobby when needed.
 
-## Notes / Known Limitations
+## Known Limitations / Future Work
 
-- The server currently **relays** `MOVE` commands; move validation and game state are handled locally by each client's `GameEngine`. The server does not yet maintain a central authoritative board.
 - Only `sound.effect` events from the server event bus are forwarded to clients.
-- There is currently no automated test suite in the project.
+- Service-to-service communication is currently simple HTTP/Redis; a message broker (NATS/Kafka) is planned for higher scale.
+- Secrets are set through environment variables with development defaults; a secrets manager should be used in production.
+- Test coverage focuses on the server, auth, and networking layers; the engine and UI are not yet covered.
